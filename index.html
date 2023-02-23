@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mixology Book</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/4d70706659.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Header -->
+  <header>
+    <!-- Navigation bar with hamburger menu button -->
+    <div class="admin_bar">
+      <ul class="menu hidden">
+        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-square-pinterest"></i></a></li>
+        <li class="border-right"></li>
+        <li><i class="fa-solid fa-user"></i> <a href="#">Login/Register</a></li>
+      </ul>
+    </div>
+      <div class="logo">
+        <img src="FinalLogo.svg">
+      </div>
+    <div class="navigation">
+    <nav class="menu-nav">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Bar Book</a></li>
+        <li><a href="#">My Bar</a></li>
+        <li><a href="#">Random Cocktail</a></li>
+        <li></li>
+      </ul>
+      <form id="form">
+        <input type="search" id="query" name="q" placeholder="Search For A Drink">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </nav>
+  </div>
+  </header> 
+  <!-- Banner -->
+  <div class="banner">
+    <div class=logo_icon>
+      <img src="logoicon-white.svg" style="display:block;">
+    </div>
+    <div class="heading">
+      <h1>Welcome to The Mix-O-Dex</h1>
+      <h3>The Best Cocktail Resource Online</h3>
+    </div>
+  </div>
+
+  <section class="create">
+    <h2>Create A Cocktail</h2>
+    <hr class="divider"/>
+    <p>
+      Simply add any ingredients you have at home using the lists below, and we will show you all the cocktails you could possibly make!
+    </p>
+    <p>
+      Don't forget to create an account so you can save all your findings when searching for cocktails you can create! <a href="#">Click Here</a> To create an account.
+    </p>  
+  </section>
+
+    <section id="create">
+      <div class="text-one">
+        <h3>Search For Your Ingredients</h3>
+        <p style="font-size: 0.9vw">Browse the categories or type your ingredients in the search bar.</p>
+      </div>
+
+      <div class="text-two">
+        <h3>Select Your Ingredients</h3>
+        <p style="font-size: 0.9vw">Select the ingredients you have in your home to add them to your list.</p>
+      </div>
+
+      <div class="text-three">
+        <h3>Craft Your Cocktail</h3>
+        <p style="font-size: 0.9vw">Click the "Shake Ingredients" to craft all the cocktails you can make in your home.</p>
+      </div>
+    </section>
+    <section class="start">
+
+      <div class="">
+        <ul class="search-ingredients">
+          <li class="spirits" v-on:click="viewIngredients"><a href="#">Spirits</a></li>
+          <li class="liqueurs"><a href="#">Liqueurs</a></li>
+          <li class="beers"><a href="#">Beers</a></li>
+          <li class="wine"><a href="#">Wine</a></li>
+          <li class="mixers"><a href="#">Mixers</a></li>
+          <li class="other"><a href="#">Other</a></li>
+        </ul>
+      </div>
+      
+        <div class="results" id="app">
+          <ul class="search-ingredients">
+            <li v-for="spirit, i in spirits">
+              <div>{{spirit.spirits}}</div>
+              <div>{{liqueur.liqueurs}}</div>
+              <div>{{beer.beers}}</div>
+              <div>{{wine.wines}}</div>
+              <div>{{mixer.mixers}}</div>
+              <div>{{other.others}}</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="secondary">
+          <ul class="search-ingredients">
+            <li></li>
+          </ul>
+        </div>
+
+
+        <div class="bar-list">
+          <ul class="search-ingredients">
+            <li></li>
+          </ul>
+        </div>
+    </section>
+    <section class="start">
+      <div style="height: 150px;"></div>
+    </section>
+
+    <footer style="margin: 0; padding: 0;">
+      <nav style="margin: 0; padding: 0;">
+        <ul class="links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Bar Book</a></li>
+          <li><a href="#">My Bar</a></li>
+          <li><a href="#">Random Cocktail</a></li>
+        </ul>
+        <ul class="social">
+          <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-square-pinterest"></i></a></li>
+      </ul>
+    </nav>
+    </div>
+    </footer>
+
+
+<script src="https://unpkg.com/vue@3"></script>
+<script src="app.js"></script>
+</body>
+
+    
+    
