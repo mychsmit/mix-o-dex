@@ -1,6 +1,4 @@
-const http = require('http');
-
-const server = http.createServer();
+const express = require('express');
 
 const cors = require('cors');
 
@@ -8,14 +6,22 @@ const app = express();
 
 app.use(express.urlencoded({extended:false})); 
 
+app.use(cors());
+
 
 var ingredients = [
 	{
-		spirits: ["Vodka", "Tequila", "Gin", "Rum", "Whisky"],
+		spirits: [{
+			vodka: ["Absolut", "Titos", "Sky", "Grey Goose", "Smirnoff", "Stolichnaya", "Three Olives", "Vodka"], 
+			tequila: ["Hornitos", "Jose Cuervo", "Patron", "Sauza", "Tequila Blanco", "Tequila Reposado", "Tequila Silver"], 
+			gin: ["Hendricks", "Beefeater", "Bombay Sapphire", "Gordon's", "Tanqueray"], 
+			rum: ["Bacardi", "Bacardi Black", "Castillo", "Captain Morgan", "Malibu"],
+			whisky: ["Beams 8 Star", "Crown Royal", "Jack Daniels", "Jameson", "Jim Beam", "Makers Mark"]
+		}],
 		liqueurs: ["Chocolate Liqueur", "Coffee Liqueur", "Cream Liqueur", "Fruit Liqueur", "Herb Liqueur", "Nut Liqueur", "Other Liqueur", "Whisky Liqueur"],
 		beers: ["Beers", "Ciders"],
 		wines: ["Champagnes", "Red Wines", "White Wines"],
-		mixers: ["Juices", "Soft Drinks" "Syrups"]
+		mixers: ["Juices", "Soft Drinks", "Syrups"],
 		other: ["Fruits"]
 	}
 	]

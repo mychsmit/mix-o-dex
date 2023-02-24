@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" conetnt="width=device-width, initial-scale=1">
     <title>Mixology Book</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/4d70706659.js" crossorigin="anonymous"></script>
@@ -83,7 +85,7 @@
 
       <div class="">
         <ul class="search-ingredients">
-          <li class="spirits" v-on:click="viewIngredients"><a href="#">Spirits</a></li>
+          <li class="spirits"><a v-on:click="getSpirits">Spirits</a></li>
           <li class="liqueurs"><a href="#">Liqueurs</a></li>
           <li class="beers"><a href="#">Beers</a></li>
           <li class="wine"><a href="#">Wine</a></li>
@@ -93,16 +95,11 @@
       </div>
       
         <div class="results" id="app">
-          <ul class="search-ingredients">
-            <li v-for="spirit, i in spirits">
-              <div>{{spirit.spirits}}</div>
-              <div>{{liqueur.liqueurs}}</div>
-              <div>{{beer.beers}}</div>
-              <div>{{wine.wines}}</div>
-              <div>{{mixer.mixers}}</div>
-              <div>{{other.others}}</div>
-            </li>
+          <ul class="search-ingredients" v-for="type, i in spirits">
+            <li class="spirits">{{type.spirits[0]}}</li>
+            
           </ul>
+            
         </div>
 
         <div class="secondary">
