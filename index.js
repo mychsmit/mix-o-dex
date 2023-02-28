@@ -11,24 +11,25 @@ app.use(cors());
 
 var ingredients = [
 	{
-		spirits: [{
-				category: "Vodka",
+		category: "Spirits",
+		types: [{
+				type: "Vodka",
 				brands: ["Absolut", "Titos", "Sky", "Grey Goose", "Smirnoff", "Stolichnaya", "Three Olives", "Vodka"], 
 			}, 
 			{
-				category: "Tequila",
+				type: "Tequila",
 				brands: ["Hornitos", "Jose Cuervo", "Patron", "Sauza", "Tequila Blanco", "Tequila Reposado", "Tequila Silver"], 
 			},
 			{
-				category: "Gin",
+				type: "Gin",
 				brands: ["Hendricks", "Beefeater", "Bombay Sapphire", "Gordon's", "Tanqueray"], 
 			},
 			{
-				category: "Rum",
+				type: "Rum",
 				brands: ["Bacardi", "Bacardi Black", "Castillo", "Captain Morgan", "Malibu"],
 			},
 			{
-				category: "Whisky",
+				type: "Whisky",
 				brands: ["Beams 8 Star", "Crown Royal", "Jack Daniels", "Jameson", "Jim Beam", "Makers Mark"]
 		}],
 		liqueurs: [{
@@ -55,7 +56,7 @@ var ingredients = [
 			category: "Nut Liqueur",
 			brands: ["Amaretto", "Chestnut Liqueur", "Walnut Liqueur"]
 		}
-		}]
+		]
 	}
 	]
 	

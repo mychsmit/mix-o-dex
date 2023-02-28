@@ -346,7 +346,6 @@ footer {
   background-color: #ccc;
   border-radius: 10px;
   padding: 20px;
-  max-heigth: 50vh;
   height: 100%;
 }
 
@@ -365,68 +364,160 @@ footer {
   background-color: #fff;
 }
 
+.search-liqueurs {
+  list-style: none;
+  width: 100%;
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  height: 100%;
+}
+
+.search-liqueurs a {
+  text-decoration: none;
+  color: #000;
+}
+
+.search-liqueurs li {
+  padding: 20px;
+  font-weight: 700;
+  font-size:3vh;
+}
+
+.search-liqueurs li:hover {
+  background-color: #fff;
+}
+
+/* spirits css */
+
+#spirits:hover {
+  border-left: 4px solid #303c96;
+  cursor: pointer;
+}
+
 .gin:hover {
   border-left: 4px solid #303c96;
+  cursor: pointer;
 }
 
 .rum:hover {
   border-left: 4px solid #303c96;
+  cursor: pointer;
 }
 
 .tequila:hover {
   border-left: 4px solid #303c96;
+  cursor: pointer;
 }
 
 .vodka:hover {
   border-left: 4px solid #303c96;
+  cursor: pointer;
 }
 
 .whisky:hover {
   border-left: 4px solid #303c96;
+  cursor: pointer;
 }
 
-.liqueurs:hover {
-  border-left: 4px solid #0cca4a;
-}
-
-.beers:hover {
-  border-left: 4px solid #eaba1a;
-}
-
-.wine:hover {
-  border-left: 4px solid #4f021a;
-}
-
-.mixers:hover {
-  border-left: 4px solid #f00699;
-}
-
-.other:hover {
-  border-left: 4px solid #ec4003;
-}
+/* liqueurs styles */
 
 #liqueurs:hover {
   border-left: 4px solid #0cca4a;
+  cursor: pointer;
 }
+
+.chocolate:hover {
+  border-left: 4px solid #0cca4a;
+  cursor: pointer;
+}
+
+.coffee:hover {
+  border-left: 4px solid #0cca4a;
+  cursor: pointer;
+}
+
+.cream:hover {
+  border-left: 4px solid #0cca4a;
+  cursor: pointer;
+}
+
+.fruit:hover {
+  border-left: 4px solid #0cca4a;
+  cursor: pointer;
+}
+
+.herb:hover {
+  border-left: 4px solid #0cca4a;
+  cursor: pointer;
+}
+
+.nut:hover {
+  border-left: 4px solid #0cca4a;
+  cursor: pointer;
+}
+
+/* beer styles */
 
 #beers:hover {
   border-left: 4px solid #eaba1a;
+  cursor: pointer;
 }
+
+.pilsner:hover {
+  border-left: 4px solid #eaba1a;
+  cursor: pointer;
+}
+
+.ipa:hover {
+  border-left: 4px solid #eaba1a;
+  cursor: pointer;
+}
+
+.blonde:hover {
+  border-left: 4px solid #eaba1a;
+  cursor: pointer;
+}
+
+.cider:hover {
+  border-left: 4px solid #eaba1a;
+  cursor: pointer;
+}
+
+/* wine styles */
 
 #wine:hover {
   border-left: 4px solid #4f021a;
+  cursor: pointer;
 }
+
+.red:hover {
+  border-left: 4px solid #4f021a;
+  cursor: pointer;
+}
+
+.white:hover {
+  border-left: 4px solid #4f021a;
+  cursor: pointer;
+}
+
+.champagne:hover {
+  border-left: 4px solid #4f021a;
+  cursor: pointer;
+}
+
+/* mixers styles */
 
 #mixers:hover {
   border-left: 4px solid #f00699;
+  cursor: pointer;
 }
+
+/* other styles */
 
 #other:hover {
   border-left: 4px solid #ec4003;
-}
-
-#spirits:hover {
-  border-left: 4px solid #303c96;
+  cursor: pointer;
 }
 
 
