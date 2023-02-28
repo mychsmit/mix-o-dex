@@ -81,23 +81,26 @@
         <p style="font-size: 0.9vw">Click the "Shake Ingredients" to craft all the cocktails you can make in your home.</p>
       </div>
     </section>
-    <section class="start">
+    <section class="start"  id="app" >
 
       <div class="">
         <ul class="search-ingredients">
-          <li class="spirits"><a v-on:click="getSpirits">Spirits</a></li>
-          <li class="liqueurs"><a href="#">Liqueurs</a></li>
-          <li class="beers"><a href="#">Beers</a></li>
-          <li class="wine"><a href="#">Wine</a></li>
-          <li class="mixers"><a href="#">Mixers</a></li>
-          <li class="other"><a href="#">Other</a></li>
+          <li id="spirits"><a v-on:click="showSpirits">Spirits</a></li>
+          <li id="liqueurs"><a href="#">Liqueurs</a></li>
+          <li id="beers"><a href="#">Beers</a></li>
+          <li id="wine"><a href="#">Wine</a></li>
+          <li id="mixers"><a href="#">Mixers</a></li>
+          <li id="other"><a href="#">Other</a></li>
         </ul>
       </div>
       
-        <div class="results" id="app">
-          <ul class="search-ingredients" v-for="type, i in spirits">
-            <li class="spirits">{{type.spirits[0]}}</li>
-            
+        <div class="results">
+          <ul class="search-spirits">
+            <li class="gin" style="display:none;">Gin</li>
+            <li class="rum" style="display:none;">Rum</li>
+            <li class="tequila" style="display:none;">Tequila</li>
+            <li class="vodka" style="display:none;">Vodka</li>
+            <li class="whisky" style="display:none;">Whisky</li>
           </ul>
             
         </div>

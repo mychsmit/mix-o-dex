@@ -340,7 +340,48 @@ footer {
   background-color: #fff;
 }
 
-.spirits:hover {
+.search-spirits {
+  list-style: none;
+  width: 100%;
+  background-color: #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  max-heigth: 50vh;
+  height: 100%;
+}
+
+.search-spirits a {
+  text-decoration: none;
+  color: #000;
+}
+
+.search-spirits li {
+  padding: 20px;
+  font-weight: 700;
+  font-size:3vh;
+}
+
+.search-spirits li:hover {
+  background-color: #fff;
+}
+
+.gin:hover {
+  border-left: 4px solid #303c96;
+}
+
+.rum:hover {
+  border-left: 4px solid #303c96;
+}
+
+.tequila:hover {
+  border-left: 4px solid #303c96;
+}
+
+.vodka:hover {
+  border-left: 4px solid #303c96;
+}
+
+.whisky:hover {
   border-left: 4px solid #303c96;
 }
 
@@ -363,6 +404,32 @@ footer {
 .other:hover {
   border-left: 4px solid #ec4003;
 }
+
+#liqueurs:hover {
+  border-left: 4px solid #0cca4a;
+}
+
+#beers:hover {
+  border-left: 4px solid #eaba1a;
+}
+
+#wine:hover {
+  border-left: 4px solid #4f021a;
+}
+
+#mixers:hover {
+  border-left: 4px solid #f00699;
+}
+
+#other:hover {
+  border-left: 4px solid #ec4003;
+}
+
+#spirits:hover {
+  border-left: 4px solid #303c96;
+}
+
+
 
 .start {
   margin-top: 0;

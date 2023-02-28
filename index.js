@@ -12,19 +12,53 @@ app.use(cors());
 var ingredients = [
 	{
 		spirits: [{
-			vodka: ["Absolut", "Titos", "Sky", "Grey Goose", "Smirnoff", "Stolichnaya", "Three Olives", "Vodka"], 
-			tequila: ["Hornitos", "Jose Cuervo", "Patron", "Sauza", "Tequila Blanco", "Tequila Reposado", "Tequila Silver"], 
-			gin: ["Hendricks", "Beefeater", "Bombay Sapphire", "Gordon's", "Tanqueray"], 
-			rum: ["Bacardi", "Bacardi Black", "Castillo", "Captain Morgan", "Malibu"],
-			whisky: ["Beams 8 Star", "Crown Royal", "Jack Daniels", "Jameson", "Jim Beam", "Makers Mark"]
+				category: "Vodka",
+				brands: ["Absolut", "Titos", "Sky", "Grey Goose", "Smirnoff", "Stolichnaya", "Three Olives", "Vodka"], 
+			}, 
+			{
+				category: "Tequila",
+				brands: ["Hornitos", "Jose Cuervo", "Patron", "Sauza", "Tequila Blanco", "Tequila Reposado", "Tequila Silver"], 
+			},
+			{
+				category: "Gin",
+				brands: ["Hendricks", "Beefeater", "Bombay Sapphire", "Gordon's", "Tanqueray"], 
+			},
+			{
+				category: "Rum",
+				brands: ["Bacardi", "Bacardi Black", "Castillo", "Captain Morgan", "Malibu"],
+			},
+			{
+				category: "Whisky",
+				brands: ["Beams 8 Star", "Crown Royal", "Jack Daniels", "Jameson", "Jim Beam", "Makers Mark"]
 		}],
-		liqueurs: ["Chocolate Liqueur", "Coffee Liqueur", "Cream Liqueur", "Fruit Liqueur", "Herb Liqueur", "Nut Liqueur", "Other Liqueur", "Whisky Liqueur"],
-		beers: ["Beers", "Ciders"],
-		wines: ["Champagnes", "Red Wines", "White Wines"],
-		mixers: ["Juices", "Soft Drinks", "Syrups"],
-		other: ["Fruits"]
+		liqueurs: [{
+			category: "Chocolate Liqueur",
+			brands: ["Chocolate Liqueur", "Godiva White Chocolate Liqueur", "Frangelico"]
+		},
+		{
+			category: "Coffee Liqueur",
+			brands: ["Coffee Liqueur", "Kahlua", "Mr. Black Cold Brew"]
+		},
+		{
+			category: "Cream Liqueur",
+			brands: ["Bailey's Irish Cream", "Disaronno Velvet Cream", "Apple Pie Cream", "Rose Strawberry Cream"]
+		},
+		{
+			category:  "Fruit Liqueur",
+			brands: ["Banana Liqueur", "Blue Curacao", "Chambord", "Cointreau", "Grand Marnier", "Limoncello"]
+		},
+		{
+			category: "Herb Liqueur",
+			brands: ["St. Germain Elderflower", "Creme de Menthe", "Cinnamon Liqueur", "Amaro Averna"]
+		},
+		{
+			category: "Nut Liqueur",
+			brands: ["Amaretto", "Chestnut Liqueur", "Walnut Liqueur"]
+		}
+		}]
 	}
 	]
+	
 
 app.get('/ingredients', function( req, res ) {
 

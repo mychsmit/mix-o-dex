@@ -31,8 +31,17 @@ Vue.createApp({
 				});
 
 			});
+		},
+
+		showSpirits: function () {
+			document.querySelector('.gin').style.display='block';
+			document.querySelector('.rum').style.display='block';
+			document.querySelector('.tequila').style.display='block';
+			document.querySelector('.vodka').style.display='block';
+			document.querySelector('.whisky').style.display='block';
 		}
 	},
+
 
 	created: function () {
 		this.getSpirits();
