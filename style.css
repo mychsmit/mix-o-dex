@@ -316,13 +316,17 @@ footer {
 }
 
 .search-ingredients {
-  list-style: none;
   width: 100%;
   background-color: #ccc;
   border-radius: 10px;
   padding: 20px;
   max-heigth: 50vh;
   height: 100%;
+}
+
+.search-ingredients ul {
+  list-style: none;
+  padding: 0;
 }
 
 .search-ingredients a {
@@ -390,7 +394,7 @@ footer {
 
 /* spirits css */
 
-#spirits:hover {
+.spirits:hover {
   border-left: 4px solid #303c96;
   cursor: pointer;
 }
@@ -422,7 +426,7 @@ footer {
 
 /* liqueurs styles */
 
-#liqueurs:hover {
+.liqueurs:hover {
   border-left: 4px solid #0cca4a;
   cursor: pointer;
 }
@@ -459,7 +463,7 @@ footer {
 
 /* beer styles */
 
-#beers:hover {
+.beers:hover {
   border-left: 4px solid #eaba1a;
   cursor: pointer;
 }
@@ -486,7 +490,7 @@ footer {
 
 /* wine styles */
 
-#wine:hover {
+.wine:hover {
   border-left: 4px solid #4f021a;
   cursor: pointer;
 }
@@ -508,14 +512,14 @@ footer {
 
 /* mixers styles */
 
-#mixers:hover {
+.mixers:hover {
   border-left: 4px solid #f00699;
   cursor: pointer;
 }
 
 /* other styles */
 
-#other:hover {
+.others:hover {
   border-left: 4px solid #ec4003;
   cursor: pointer;
 }

@@ -83,69 +83,54 @@
     </section>
     <section class="start"  id="app" >
 
-      <div class="">
-        <ul class="search-ingredients">
-          <li id="spirits" v-on:click="showSpirits"><a>Spirits</a></li>
-          <li id="liqueurs" v-on:click="showLiqueurs"><a>Liqueurs</a></li>
-          <li id="beers" v-on:click="showBeers"><a>Beers</a></li>
-          <li id="wine" v-on:click="showWines"><a>Wine</a></li>
-          <li id="mixers" v-on:click="showMixers"><a>Mixers</a></li>
-          <li id="other" v-on:click="showOthers"><a>Other</a></li>
+      <div class="search-ingredients">
+        <ul>
+          <li class="spirits" v-on:click="showSpirits"><a>Spirits</a></li>
+          <li class="liqueurs" v-on:click="showLiqueurs"><a>Liqueurs</a></li>
+          <li class="beers" v-on:click="showBeers"><a>Beers</a></li>
+          <li class="wine" v-on:click="showWines"><a>Wine</a></li>
+          <li class="mixers" v-on:click="showMixers"><a>Mixers</a></li>
+          <li class="others" v-on:click="showOthers"><a>Other</a></li>
         </ul>
       </div>
       
-        <div class="results" v-for="ingredient in ingredients">
-        <strong>{{ ingredient.category }}</strong>
-          <ul class="search-spirits">
-            <!-- <li class="spirits" v-for="type in ingredient.types">{{ type }}</li> -->
-            <li class="gin" style="display:none;">Gin</li>
-            <li class="rum" style="display:none;">Rum</li>
-            <li class="tequila" style="display:none;">Tequila</li>
-            <li class="vodka" style="display:none;">Vodka</li>
-            <li class="whisky" style="display:none;">Whisky</li>
+        <div class="results search-ingredients">
+          <ul v-for="types in spirits" v-if="show_spirits">
+            <li class="spirits" v-on:click="showSubSpirits">{{types.type}}</li>
+          </ul>
 
-            <!-- liqueurs -->
-            <li class="chocolate" style="display:none;">Chocolate Liqueurs</li>
-            <li class="coffee" style="display:none;">Coffee Liqueurs</li>
-            <li class="cream" style="display:none;">Cream Liqueurs</li>
-            <li class="fruit" style="display:none;">Fruit Liqueurs</li>
-            <li class="herb" style="display:none;">Herb Liqueurs</li>
-            <li class="nut" style="display:none;">Nut Liqueurs</li>
+          <ul v-for="types in liqueurs" v-if="show_liqueurs">
+            <li class="liqueurs">{{types.type}}</li>
+          </ul>
 
-            <!-- beers -->
-            <li class="pilsner" style="display:none;">Pilsner</li>
-            <li class="ipa" style="display:none;">IPA</li>
-            <li class="blonde" style="display:none;">Blonde</li>
-            <li class="cider" style="display:none;">Ciders</li>
+          <ul v-for="types in beers_ciders" v-if="show_beers">
+            <li class="beers">{{types.type}}</li>
+          </ul>
 
-            <!-- wines -->
-            <li class="red" style="display:none;">Red Wines</li>
-            <li class="white" style="display:none;">White Wines</li>
-            <li class="champagne" style="display:none;">Champagnes</li>
+          <ul v-for="types in wines" v-if="show_wines">
+            <li class="wine">{{types.type}}</li>
+          </ul>
 
-            <!-- mixers -->
-            <li class="juice" style="display:none;">Juices</li>
-            <li class="flavor" style="display:none;">Flavorings</li>
-            <li class="soda" style="display:none;">Sodas</li>
+          <ul v-for="types in mixers" v-if="show_mixers">
+            <li class="mixers">{{types.type}}</li>
+          </ul>
 
-            <!-- others -->
-            <li class="fruits" style="display:none;">Fruits</li>
-            <li class="spice" style="display:none;">Spices</li>
-            <li class="vegetables" style="display:none;">Vegetables</li>
-
+          <ul v-for="types in others" v-if="show_others">
+            <li class="others">{{types.type}}</li>
           </ul>
             
         </div>
 
-        <div class="secondary">
-          <ul class="search-liqueurs">
+        <div class="secondary search-ingredients">
+          
+          <ul v-for="types in spirits">
+            <li class="spirits" v-for="brand in types.brands" v-if="show_sub">{{brand}}</li>
           </ul>
         </div>
 
 
-        <div class="bar-list">
-          <ul class="search-ingredients">
-            <li></li>
+        <div class="bar-list search-ingredients">
+          <ul>
           </ul>
         </div>
     </section>
