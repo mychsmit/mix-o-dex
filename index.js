@@ -171,7 +171,7 @@ app.get('/others', function( req, res ) {
 
 });
 
-app.listen(8080, function() {
+app.listen(8080, '127.0.0.1", function() {
 
 	console.log('Server Is Now Running On Port 8080');
 
