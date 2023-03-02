@@ -95,8 +95,8 @@
       </div>
       
         <div class="results search-ingredients">
-          <ul v-for="types in spirits" v-if="show_spirits">
-            <li class="spirits" v-on:click="showSubSpirits">{{types.type}}</li>
+          <ul v-for="spirit in spirits" v-if="show_spirits">
+            <li class="spirits" v-on:click="showBrands(spirit.brands)">{{spirit.type}}</li>
           </ul>
 
           <ul v-for="types in liqueurs" v-if="show_liqueurs">
@@ -123,8 +123,8 @@
 
         <div class="secondary search-ingredients">
           
-          <ul v-for="types in spirits">
-            <li class="spirits" v-for="brand in types.brands" v-if="show_sub">{{brand}}</li>
+          <ul>
+            <li class="spirits" v-for="brand in selectedBrands" v-if="show_sub">{{brand}}</li>
           </ul>
         </div>
 

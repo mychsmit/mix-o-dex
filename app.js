@@ -8,6 +8,7 @@ Vue.createApp({
 			wines: [],
 			mixers: [],
 			others: [],
+			selectedBrands: [],
 			show_spirits: false,
 			show_liqueurs: false,
 			show_beers: false,
@@ -137,13 +138,17 @@ Vue.createApp({
 			
 		},
 
-		showSubSpirits: function () {
+		showBrands: function (brands) {
 
 			if (this.show_sub == false) {
 				this.show_sub = true;
 			} else {
 				this.show_sub = false;
 			}
+
+			this.selectedBrands = brands;
+
+
 		},
 
 		showLiqueurs: function () {
