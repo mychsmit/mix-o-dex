@@ -14,7 +14,9 @@ app.use(cors());
 
 app.get('/spirits', function( req, res ) {
 
-	res.json(spirits);
+	model.spirits.find().then(spirits => {
+		res.json(spirits);
+	});
 
 	console.log('Get Spirits Initiated');
 
@@ -22,7 +24,9 @@ app.get('/spirits', function( req, res ) {
 
 app.get('/myselectedbaritems', function( req, res ) {
 
-	res.json(mySelectedBarItems);
+	model.mySelectedBarItems.find().then(mySelectedBarItems =>{
+		res.json(mySelectedBarItems);
+	});
 
 	console.log('Get Bar List Initiated');
 
@@ -30,24 +34,33 @@ app.get('/myselectedbaritems', function( req, res ) {
 
 app.post('/spirits', function( req, res ) {
 
+	const newSelectedBarItems = new model.mySelectedBarItems({
+		mySelectedBarItems: [req.body.listedItem]
+	})
+
 	console.log('Post Response Initiated');
-	console.log(req.body);
-	mySelectedBarItems.push(req.body);
-	res.status(201).send('Created New Ingredient');
+	newSelectedBarItems.save().then(() => {
+		console.log("Saved To DB");
+		res.status(201).send('Created New Ingredient');
+	});
 });
 
 app.delete('/spirits', function( req, res ) {
 
 	console.log('Post Response Initiated');
 	console.log(req.body);
-	mySelectedBarItems.push(req.body);
-	res.status(201).send('Created New Ingredient');
+	mySelectedBarItems.save().then(() => {
+		console.log("Saved To DB");
+		res.status(201).send('Created New Ingredient');
+	});
 });
 
 
 app.get('/liqueurs', function( req, res ) {
 
-	res.json(liqueurs);
+	model.liqueurs.find().then(liqueurs => {
+		res.json(liqueurs);
+	});
 
 	console.log("Get Liqueurs Initiated");
 
@@ -56,7 +69,9 @@ app.get('/liqueurs', function( req, res ) {
 
 app.get('/beers_ciders', function( req, res ) {
 
-	res.json(beers_ciders);
+	model.beers_ciders.find().then(beers_ciders => {
+		res.json(beers_ciders);
+	});
 
 	console.log("Get Beers n' Ciders Initiated");
 
@@ -64,7 +79,9 @@ app.get('/beers_ciders', function( req, res ) {
 
 app.get('/wines', function( req, res ) {
 
-	res.json(wines);
+	model.wines.find().then(wines => {
+		res.json(wines);
+	});
 
 	console.log("Get Wines Initiated");
 
@@ -74,7 +91,9 @@ app.get('/wines', function( req, res ) {
 
 app.get('/mixers', function( req, res ) {
 
-	res.json(mixers);
+	model.mixers.find().then(mixers => {
+		res.json(mixers);
+	});
 
 	console.log("Get Mixers Initiated");
 
@@ -84,7 +103,9 @@ app.get('/mixers', function( req, res ) {
 
 app.get('/others', function( req, res ) {
 
-	res.json(others);
+	model.others.find().then(others => {
+		res.json(others);
+	});
 
 	console.log("Get Others Initiated");
 

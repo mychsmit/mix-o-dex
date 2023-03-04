@@ -39,6 +39,7 @@ module.exports = {
     beers_ciders: beers_ciders,
     wines: wines,
     mixers: mixers,
-    others: others
+    others: others,
+    mySelectedBarItems: mySelectedBarItems
 
 };

@@ -24,7 +24,7 @@ Vue.createApp({
 
 	methods: {
 
-		getSpirits: function (data) {
+		getSpirits: function () {
 
 			fetch("http://localhost:8080/spirits").then(response => {
 
