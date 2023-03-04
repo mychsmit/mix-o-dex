@@ -99,24 +99,24 @@
             <li class="spirits" v-on:click="showBrands(spirit.brands)">{{spirit.type}}</li>
           </ul>
 
-          <ul v-for="types in liqueurs" v-if="show_liqueurs">
-            <li class="liqueurs">{{types.type}}</li>
+          <ul v-for="liqueur in liqueurs" v-if="show_liqueurs">
+            <li class="liqueurs" v-on:click="showBrands(liqueur.brands)">{{liqueur.type}}</li>
           </ul>
 
-          <ul v-for="types in beers_ciders" v-if="show_beers">
-            <li class="beers">{{types.type}}</li>
+          <ul v-for="beer in beers_ciders" v-if="show_beers">
+            <li class="beers" v-on:click="showBrands(beer.brands)">{{beer.type}}</li>
           </ul>
 
-          <ul v-for="types in wines" v-if="show_wines">
-            <li class="wine">{{types.type}}</li>
+          <ul v-for="wine in wines" v-if="show_wines">
+            <li class="wine" v-on:click="showBrands(wine.brands)">{{wine.type}}</li>
           </ul>
 
-          <ul v-for="types in mixers" v-if="show_mixers">
-            <li class="mixers">{{types.type}}</li>
+          <ul v-for="mixer in mixers" v-if="show_mixers">
+            <li class="mixers" v-on:click="showBrands(mixer.brands)">{{mixer.type}}</li>
           </ul>
 
-          <ul v-for="types in others" v-if="show_others">
-            <li class="others">{{types.type}}</li>
+          <ul v-for="other in others" v-if="show_others">
+            <li class="others" v-on:click="showBrands(other.brands)">{{other.type}}</li>
           </ul>
             
         </div>
@@ -124,13 +124,14 @@
         <div class="secondary search-ingredients">
           
           <ul>
-            <li class="spirits" v-for="brand in selectedBrands" v-if="show_sub">{{brand}}</li>
+            <li class="spiritBrand" v-for="brand in selectedBrands" v-if="show_sub" v-on:click="IngredientsToBarList(brand)">{{brand}}</li>
           </ul>
         </div>
 
 
         <div class="bar-list search-ingredients">
-          <ul>
+          <ul v-for="items in mySelectedBarItems" v-if="mySelectedBarItems.length > 0">
+            <li class="list" v-if="selectedBrands.length > 0" v-for="item in items">{{item}}</li>
           </ul>
         </div>
     </section>

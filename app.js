@@ -2,6 +2,7 @@ Vue.createApp({
 	data: function() {
 		return {
 
+			listedItem: "",
 			spirits: [],
 			liqueurs: [], 
 			beers_ciders: [],
@@ -9,19 +10,21 @@ Vue.createApp({
 			mixers: [],
 			others: [],
 			selectedBrands: [],
+			mySelectedBarItems: [""],
 			show_spirits: false,
 			show_liqueurs: false,
 			show_beers: false,
 			show_wines: false,
 			show_mixers: false,
 			show_others: false, 
-			show_sub: false
+			show_sub: false,
+			show_list: false
 		};
 	},
 
 	methods: {
 
-		getSpirits: function () {
+		getSpirits: function (data) {
 
 			fetch("http://localhost:8080/spirits").then(response => {
 
@@ -30,6 +33,55 @@ Vue.createApp({
 				console.log('loaded bar spirits from server: ', data);
 
 				this.spirits = data;	
+
+				});
+
+			});
+
+
+				this.show_list = true;
+		},
+
+		addIngredientsToBarList: function(brand) {
+
+			if(this.show_list == false) {
+				this.show_list = true;
+			} else {
+				this.show_list = false;
+			}
+
+			this.listedItem = brand;
+
+			
+			var data = "listedItem=" + encodeURIComponent(this.listedItem);
+
+			fetch("http://localhost:8080/spirits", {
+				method: "POST",
+				body: data,
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded"
+				}
+			}).then(response => {
+				if (response.status = 201) {
+					this.getMySelectedBarItems();
+				} else {
+					console.log("Failed to add ingredient to bar list");
+				}
+			});
+
+		},
+
+
+
+		getMySelectedBarItems: function () {
+
+			fetch("http://localhost:8080/myselectedbaritems").then(response => {
+
+				response.json().then(data => {
+
+				console.log('loaded bar items from server: ', data);
+
+				this.mySelectedBarItems = data;	
 
 				});
 
@@ -149,6 +201,16 @@ Vue.createApp({
 			this.selectedBrands = brands;
 
 
+		},
+
+		showList: function (item) {
+			if(this.show_list == false) {
+				this.show_list = true;
+			} else {
+				this.show_list = false;
+			}
+
+			this.mySelectedBarItems = item;
 		},
 
 		showLiqueurs: function () {
