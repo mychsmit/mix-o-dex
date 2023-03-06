@@ -11,6 +11,7 @@ Vue.createApp({
 			others: [],
 			selectedBrands: [],
 			mySelectedBarItems: [""],
+			bar_book: [],
 			show_spirits: false,
 			show_liqueurs: false,
 			show_beers: false,
@@ -18,11 +19,21 @@ Vue.createApp({
 			show_mixers: false,
 			show_others: false, 
 			show_sub: false,
-			show_list: false
+			show_list: true
 		};
 	},
 
 	methods: {
+
+		barItemsTrue: function () {
+
+			if( this.mySelectedBarItems.length > 0 ) {
+				return true;
+			} else {
+				return false;
+			}
+
+		},
 
 		getSpirits: function () {
 
@@ -71,7 +82,22 @@ Vue.createApp({
 
 		},
 
+		getBarBook: function () {
 
+			fetch("http://localhost:8080/bar_book").then(response => {
+
+				response.json().then(data => {
+
+				console.log('loaded bar_book from server: ', data);
+
+				this.bar_book = data;	
+
+				});
+
+			});
+
+			
+		},
 
 		getMySelectedBarItems: function () {
 
@@ -170,7 +196,6 @@ Vue.createApp({
 
 			
 		},
-
 
 
 		showSpirits: function () {
@@ -286,6 +311,22 @@ Vue.createApp({
 				this.show_others = false;
 			}
 			
+		},
+
+		deleteBarListItemFromDB: function(listedbaritemId) {
+
+			fetch("http://localhost:8080/myselectedbaritems/" + listedbaritemId, {
+				method: "DELETE"
+			}).then(response => {
+				console.log("Listed Bar Item Deleted");
+				this.getMySelectedBarItems();
+			});
+
+		},
+
+		deleteBarListItem: function (listedbaritem) {
+			console.log("Attempt to delete a listed bar item");
+			this.deleteBarListItemFromDB(listedbaritem._id);
 		}
 	},
 
@@ -297,6 +338,11 @@ Vue.createApp({
 		this.getWines();
 		this.getMixers();
 		this.getOthers();
+		this.getBarBook();
+	}, 
+
+	mounted: function() {
+		this.getMySelectedBarItems();
 	}
 
 }).mount("#app");

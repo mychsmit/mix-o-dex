@@ -4,11 +4,13 @@ const cors = require('cors');
 
 const app = express();
 
-const model = require('./model')
+const model = require('./model');
 
 app.use(express.urlencoded({extended:false})); 
 
 app.use(cors());
+
+
 
 
 
@@ -32,11 +34,21 @@ app.get('/myselectedbaritems', function( req, res ) {
 
 });
 
+app.get('/bar_book', function( req, res ) {
+
+	model.bar_book.find().then(bar_book =>{
+		res.json(bar_book);
+	});
+
+	console.log('Get Bar Book Initiated');
+
+});
+
 app.post('/spirits', function( req, res ) {
 
 	const newSelectedBarItems = new model.mySelectedBarItems({
-		mySelectedBarItems: [req.body.listedItem]
-	})
+		listedItem: req.body.listedItem
+	});
 
 	console.log('Post Response Initiated');
 	newSelectedBarItems.save().then(() => {
@@ -45,14 +57,20 @@ app.post('/spirits', function( req, res ) {
 	});
 });
 
-app.delete('/spirits', function( req, res ) {
-
-	console.log('Post Response Initiated');
-	console.log(req.body);
-	mySelectedBarItems.save().then(() => {
-		console.log("Saved To DB");
-		res.status(201).send('Created New Ingredient');
+app.delete('/myselectedbaritems/:listedItemId', function( req, res ) {
+	model.mySelectedBarItems.findOne({ _id: req.params.listedItemId }).then(listedItem => {
+		if (listedItem) {
+			model.mySelectedBarItems.deleteOne({ _id: req.params.listedItemId }).then(() => {
+			res.status(204).send("Listed Bar Item Deleted");
+			consol.log("Deleted Listed Bar Item")
+			});
+		} else {
+			res.status(404).send('Listed Bar Item Not Found');
+		}
+	}).catch(() => {
+		res.status(400).send("Listed Bar Item Not Found");
 	});
+
 });
 
 

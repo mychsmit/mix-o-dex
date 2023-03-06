@@ -81,7 +81,9 @@
         <p style="font-size: 0.9vw">Click the "Shake Ingredients" to craft all the cocktails you can make in your home.</p>
       </div>
     </section>
-    <section class="start"  id="app" >
+    <section id="app" >
+
+      <div class="start">
 
       <div class="search-ingredients">
         <ul>
@@ -130,13 +132,36 @@
 
 
         <div class="bar-list search-ingredients">
-          <ul v-for="items in mySelectedBarItems" v-if="mySelectedBarItems.length > 0">
-            <li class="list" v-if="mySelectedBarItems.length > 0" v-for="item in items">{{item}}</li>
+          <ul v-for="items in mySelectedBarItems">
+            <li class="list"  v-if="mySelectedBarItems.length > 0" v-on:click="deleteBarListItem(items)">{{items.listedItem}}</li>
+            
           </ul>
         </div>
+        </div>
+
+    <div class="shake"><button v-on:click="getBarBook()">Shake Ingredients</button></div>
+    <section class="bar-results">
+
+      <div class="results-div">
+          
+          <ul class="listed-results">
+            
+            <li>
+              <ul v-for="drinks in bar_book">
+                <li>{{drinks}}</li>
+                <img src="5.svg" alt="cocktail_icon" width="150px" class="cocktail_icon">
+                <li v-for="drink in drinks">{{drinks}}</li>
+                <li></li>
+                <li></li>
+              </ul>
+
+            </li>
+
+          </ul>
+
+      </div>
+
     </section>
-    <section class="start">
-      <div style="height: 150px;"></div>
     </section>
 
     <footer style="margin: 0; padding: 0;">

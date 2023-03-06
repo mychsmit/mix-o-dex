@@ -323,6 +323,8 @@ footer {
   height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
+
+  box-shadow: inset 5px 5px 8px rgba(0,0,0,0.2);
 }
 
 .search-ingredients::-webkit-scrollbar {
@@ -648,6 +650,56 @@ i:hover {
 
 .list:hover:after {
   visibility:visible;
+}
+
+.bar-results {
+  margin-top: 10px; 
+  margin-bottom: 20px;
+  padding-right: 40px;
+  padding-left:80px;
+}
+
+.results-div {
+  background-color: #ccc; 
+  height: 40vh;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: inset 5px 5px 8px rgba(0,0,0,0.2);
+  overflow-x:hidden;
+  overflow-y: scroll;
+}
+.results-div::-webkit-scrollbar {
+  background-color:transparent;
+}
+
+.results-div::-webkit-scrollbar-thumb {
+  background-color:#d58e43;
+  border-radius: 0 10px 10px 0;
+}
+
+.listed-results {
+  list-style:none;
+  padding: 0px 50px;
+  display:grid;
+  grid-template-columns: 29% 29% 29% 29%;
+
+}
+
+.listed-results ul li {
+  list-style:none;
+}
+
+.cocktail_icon {
+  margin-top: 20px;
+}
+
+.shake {
+  position:relative;
+  width: 100%;
+  background-color: #d58e43; 
+  right:0;
+  display:inline-block;
+  float:right;
 }
 
 
