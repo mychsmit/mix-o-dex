@@ -6,6 +6,8 @@ const app = express();
 
 const model = require('./model');
 
+const port = process.env.PORT || 8080;
+
 app.use(express.urlencoded({extended:false})); 
 
 app.use(cors());
@@ -152,8 +154,8 @@ app.get('/others', function( req, res ) {
 
 });
 
-app.listen(8080, function() {
+app.listen(port, function() {
 
-	console.log('Server Is Now Running On Port 8080');
+	console.log('Server Is Now Running On Port ${port}');
 
 });
