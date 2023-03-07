@@ -8,6 +8,8 @@ const model = require('./model');
 
 const port = process.env.PORT || 8080;
 
+app.use(express.static('public'));
+
 app.use(express.urlencoded({extended:false})); 
 
 app.use(cors());
