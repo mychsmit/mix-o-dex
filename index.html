@@ -146,13 +146,11 @@
           
           <ul class="listed-results">
             
-            <li>
-              <ul v-for="drinks in bar_book">
-                <li>{{drinks}}</li>
-                <img src="5.svg" alt="cocktail_icon" width="150px" class="cocktail_icon">
-                <li v-for="drink in drinks">{{drinks}}</li>
-                <li></li>
-                <li></li>
+            <li v-for="drinks in bar_books">
+              <ul class="single-result">
+                <img src="cocktail.svg" alt="cocktail_icon"class="cocktail_icon">
+                <li class="title">{{drinks.name}}</li>
+                <li class="ingredients">{{drinks.ingredients.length}} Ingredients</li>
               </ul>
 
             </li>

@@ -11,7 +11,7 @@ Vue.createApp({
 			others: [],
 			selectedBrands: [],
 			mySelectedBarItems: [""],
-			bar_book: [],
+			bar_books: [],
 			show_spirits: false,
 			show_liqueurs: false,
 			show_beers: false,
@@ -19,11 +19,22 @@ Vue.createApp({
 			show_mixers: false,
 			show_others: false, 
 			show_sub: false,
-			show_list: true
+			show_list: true,
+			name: "",
+			ingredients: [],
+			directions: "",
+			drink_hover: false,
+			shake_ingredients: []
 		};
 	},
 
 	methods: {
+
+		shakeIngredients: function () {
+
+
+
+		},
 
 		barItemsTrue: function () {
 
@@ -84,19 +95,43 @@ Vue.createApp({
 
 		getBarBook: function () {
 
-			fetch("http://localhost:8080/bar_book").then(response => {
+			fetch("http://localhost:8080/bar_books").then(response => {
 
 				response.json().then(data => {
 
-				console.log('loaded bar_book from server: ', data);
+				console.log('loaded bar_books from server: ', data);
 
-				this.bar_book = data;	
+				this.bar_books = data;	
 
 				});
 
 			});
 
 			
+		},
+
+		addDrinkToBarBook: function() {
+
+			var that = this;
+
+			var name = "name=" + encodeURIComponent(this.name);
+			data + "&ingredients=" + encodeURIComponent(this.ingredients);
+			data + "&directions=" + encodeURIComponent(this.directions);
+
+			fetch("http://localhost:8080/bar_books", {
+				method: "POST",
+				body: data,
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded"
+				}
+			}).then(response => {
+				if (response.status = 201) {
+					this.getBarBook();
+				} else {
+					console.log("Failed to add drink to bar book");
+				}
+			})
+
 		},
 
 		getMySelectedBarItems: function () {
@@ -247,6 +282,7 @@ Vue.createApp({
 				this.show_wines = false;
 				this.show_mixers = false;
 				this.show_others = false;
+				this.show_sub = false;
 			} else {
 				this.show_liqueurs = false;
 			}
@@ -262,6 +298,7 @@ Vue.createApp({
 				this.show_wines = false;
 				this.show_mixers = false;
 				this.show_others = false;
+				this.show_sub = false;
 			} else {
 				this.show_beers = false;
 			}
@@ -277,6 +314,7 @@ Vue.createApp({
 				this.show_spirits = false;
 				this.show_mixers = false;
 				this.show_others = false;
+				this.show_sub = false;
 			} else {
 				this.show_wines = false;
 			}
@@ -292,6 +330,7 @@ Vue.createApp({
 				this.show_liqueurs = false;
 				this.show_spirits = false;
 				this.show_others = false;
+				this.show_sub = false;
 			} else {
 				this.show_mixers = false;
 			}
@@ -307,6 +346,7 @@ Vue.createApp({
 				this.show_spirits = false;
 				this.show_wines = false;
 				this.show_mixers = false
+				this.show_sub = false;
 			} else {
 				this.show_others = false;
 			}
@@ -327,7 +367,7 @@ Vue.createApp({
 		deleteBarListItem: function (listedbaritem) {
 			console.log("Attempt to delete a listed bar item");
 			this.deleteBarListItemFromDB(listedbaritem._id);
-		}
+		},
 	},
 
 
@@ -338,7 +378,6 @@ Vue.createApp({
 		this.getWines();
 		this.getMixers();
 		this.getOthers();
-		this.getBarBook();
 	}, 
 
 	mounted: function() {

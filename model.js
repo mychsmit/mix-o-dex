@@ -33,7 +33,7 @@ const mySelectedBarItems = mongoose.model('mySelectedBarItems', {
 	listedItem: String
 });
 
-const bar_book = mongoose.model('bar_book', {
+const bar_books = mongoose.model('bar_books', {
 	name: String,
 	ingredients: [],
 	directions: String
@@ -47,6 +47,6 @@ module.exports = {
     mixers: mixers,
     others: others,
     mySelectedBarItems: mySelectedBarItems,
-    bar_book: bar_book
+    bar_books: bar_books
 
 };

@@ -24,26 +24,6 @@ app.get('/spirits', function( req, res ) {
 
 });
 
-app.get('/myselectedbaritems', function( req, res ) {
-
-	model.mySelectedBarItems.find().then(mySelectedBarItems =>{
-		res.json(mySelectedBarItems);
-	});
-
-	console.log('Get Bar List Initiated');
-
-});
-
-app.get('/bar_book', function( req, res ) {
-
-	model.bar_book.find().then(bar_book =>{
-		res.json(bar_book);
-	});
-
-	console.log('Get Bar Book Initiated');
-
-});
-
 app.post('/spirits', function( req, res ) {
 
 	const newSelectedBarItems = new model.mySelectedBarItems({
@@ -57,12 +37,24 @@ app.post('/spirits', function( req, res ) {
 	});
 });
 
+
+
+app.get('/myselectedbaritems', function( req, res ) {
+
+	model.mySelectedBarItems.find().then(mySelectedBarItems =>{
+		res.json(mySelectedBarItems);
+	});
+
+	console.log('Get Bar List Initiated');
+
+});
+
 app.delete('/myselectedbaritems/:listedItemId', function( req, res ) {
 	model.mySelectedBarItems.findOne({ _id: req.params.listedItemId }).then(listedItem => {
 		if (listedItem) {
 			model.mySelectedBarItems.deleteOne({ _id: req.params.listedItemId }).then(() => {
 			res.status(204).send("Listed Bar Item Deleted");
-			consol.log("Deleted Listed Bar Item")
+			console.log("Deleted Listed Bar Item")
 			});
 		} else {
 			res.status(404).send('Listed Bar Item Not Found');
@@ -71,6 +63,37 @@ app.delete('/myselectedbaritems/:listedItemId', function( req, res ) {
 		res.status(400).send("Listed Bar Item Not Found");
 	});
 
+});
+
+
+
+
+
+app.get('/bar_books', function( req, res ) {
+
+	console.log("query params: ", req.query);
+
+	model.bar_books.find().then(bar_books =>{
+		res.json(bar_books);
+	});
+
+	console.log('Get Bar Book Initiated');
+
+});
+
+app.post('/bar_books', function( req, res ) {
+	const newBarBookItem = new model.bar_books({
+		name: req.body.name,
+		ingredients: req.body.ingredients,
+		directions: req.body.directions
+	});
+
+	console.log("Post Response For BarBook Initiated");
+
+	newBarBookItem.save().then(() => {
+		console.log("Saved Bar Book Item To DB");
+		res.status(201).send('Created New Bar Book Item');
+	});
 });
 
 

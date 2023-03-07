@@ -661,12 +661,13 @@ i:hover {
 
 .results-div {
   background-color: #ccc; 
-  height: 40vh;
+  height: 50vh;
   width: 100%;
   border-radius: 10px;
   box-shadow: inset 5px 5px 8px rgba(0,0,0,0.2);
   overflow-x:hidden;
   overflow-y: scroll;
+  padding-top: 30px;
 }
 .results-div::-webkit-scrollbar {
   background-color:transparent;
@@ -677,11 +678,37 @@ i:hover {
   border-radius: 0 10px 10px 0;
 }
 
+.shake {
+  position:relative;
+  width: 483px;
+  background-color: #d58e43; 
+  right:40px;
+  display:inline-block;
+  float:right;
+  border-radius: 0 0 10px 10px;
+  top: -54px;
+  text-align:center;
+}
+
+.shake button {
+  display: inline-block;
+  width: 100%;
+  font-weight: 900;
+  font-size: 28px;
+  transition: 0.3s all ease-in-out;
+}
+
+.shake button:hover {
+  font-size: 23px;
+
+}
+
 .listed-results {
   list-style:none;
   padding: 0px 50px;
   display:grid;
   grid-template-columns: 29% 29% 29% 29%;
+  line-height: 1.8;
 
 }
 
@@ -689,17 +716,52 @@ i:hover {
   list-style:none;
 }
 
-.cocktail_icon {
-  margin-top: 20px;
+.single-result {
+  padding: 20px;
+  border-radius: 10px; 
+  margin: 10px;
+  transition: 0.3s all ease-in-out;
+  text-align:center;
 }
 
-.shake {
-  position:relative;
-  width: 100%;
-  background-color: #d58e43; 
-  right:0;
-  display:inline-block;
-  float:right;
+.single-result:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 18px rgba(0,0,0,0.3);
+  transform: translateY(-10px);
+
+}
+
+.cocktail_icon {
+  margin-top: 20px;
+  margin-bottom:10px;
+  width: 150px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.ingredients {
+  color:#000;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.directions {
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.remove {
+  position: relative;
+  display:flex;
+  top: 0;
+  right: 10px;
+  float: right;
+  background-color: #e61a23;
+  padding: 0px 8px;
 }
 
 
