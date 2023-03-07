@@ -48,7 +48,7 @@ Vue.createApp({
 
 		getSpirits: function () {
 
-			fetch("http://localhost:8080/spirits").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/spirits").then(response => {
 
 				response.json().then(data => {
 
@@ -77,7 +77,7 @@ Vue.createApp({
 			
 			var data = "listedItem=" + encodeURIComponent(this.listedItem);
 
-			fetch("http://localhost:8080/spirits", {
+			fetch("https://mix-o-dex.up.railway.app/spirits", {
 				method: "POST",
 				body: data,
 				headers: {
@@ -95,7 +95,7 @@ Vue.createApp({
 
 		getBarBook: function () {
 
-			fetch("http://localhost:8080/bar_books").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/bar_books").then(response => {
 
 				response.json().then(data => {
 
@@ -118,7 +118,7 @@ Vue.createApp({
 			data + "&ingredients=" + encodeURIComponent(this.ingredients);
 			data + "&directions=" + encodeURIComponent(this.directions);
 
-			fetch("http://localhost:8080/bar_books", {
+			fetch("https://mix-o-dex.up.railway.app/bar_books", {
 				method: "POST",
 				body: data,
 				headers: {
@@ -136,7 +136,7 @@ Vue.createApp({
 
 		getMySelectedBarItems: function () {
 
-			fetch("http://localhost:8080/myselectedbaritems").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/myselectedbaritems").then(response => {
 
 				response.json().then(data => {
 
@@ -151,7 +151,7 @@ Vue.createApp({
 		
 		getLiqueurs: function () {
 
-			fetch("http://localhost:8080/liqueurs").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/liqueurs").then(response => {
 
 				response.json().then(data => {
 
@@ -166,7 +166,7 @@ Vue.createApp({
 
 		getBeers: function () {
 
-			fetch("http://localhost:8080/beers_ciders").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/beers_ciders").then(response => {
 
 				response.json().then(data => {
 
@@ -183,7 +183,7 @@ Vue.createApp({
 
 		getWines: function () {
 
-			fetch("http://localhost:8080/wines").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/wines").then(response => {
 
 				response.json().then(data => {
 
@@ -200,7 +200,7 @@ Vue.createApp({
 
 		getMixers: function () {
 
-			fetch("http://localhost:8080/mixers").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/mixers").then(response => {
 
 				response.json().then(data => {
 
@@ -217,7 +217,7 @@ Vue.createApp({
 
 		getOthers: function () {
 
-			fetch("http://localhost:8080/others").then(response => {
+			fetch("https://mix-o-dex.up.railway.app/others").then(response => {
 
 				response.json().then(data => {
 
@@ -355,7 +355,7 @@ Vue.createApp({
 
 		deleteBarListItemFromDB: function(listedbaritemId) {
 
-			fetch("http://localhost:8080/myselectedbaritems/" + listedbaritemId, {
+			fetch("https://mix-o-dex.up.railway.app/myselectedbaritems/" + listedbaritemId, {
 				method: "DELETE"
 			}).then(response => {
 				console.log("Listed Bar Item Deleted");
