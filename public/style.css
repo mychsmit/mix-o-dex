@@ -845,13 +845,13 @@ i:hover {
 .close {
   color: #aaaaaa;
   float: right;
-  font-size: 28px;
+  font-size: 48px;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: #FF0000;
   text-decoration: none;
   cursor: pointer;
 }
@@ -868,6 +868,50 @@ i:hover {
   100% {opacity: 0}
 }
 
+.credentials {
+  color:#000;
+}
+
+.input {
+  border: 1px solid black;
+  width: 50%;
+  margin: 10px; 
+  text-transform: none !important; 
+  font-family: Trykker, serif !important;
+}
+
+.input::placeholder {
+  color:#000;
+}
+
+.submit {
+  font-size:18px;
+  font-weight: 700;
+  color: black;
+  background-color: #f68915;
+  padding: 0px 14px;
+  box-shadow: 3px 3px 3px rgb(0 0 0 / 20%);
+  transition: 0.3s box-shadow ease-in-out;
+  width:4vw !important;
+  margin: 20px;
+}
+
+.submit:hover {
+  box-shadow: none;
+  transition: 0.3s box-shadow ease-in-out;
+}
+.icon.is-small {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.fas {
+  display:block;
+}
+
+.eye {
+  position:absolute;
+}
 
 
 

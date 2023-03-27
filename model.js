@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const bcrypt = require('bcrypt');
+
 mongoose.set('strictQuery', false);
 
 mongoose.connect('mongodb+srv://mychsmit:AVBwrgOZIGktbSnf@mix-o-dex.m7tkt2a.mongodb.net/mix-o-dex?retryWrites=true&w=majority')
@@ -58,6 +60,29 @@ const userSchema = new mongoose.Schema({
 		required: [true, "Please specify a password."]
 	}
 });
+
+userSchema.methods.setEncryptedPassword = function (plainPassword) {
+
+	var promise = new Promise( (resolve, reject) => {
+
+		bcrypt.hash(plainPassword, 12).then( hash => {
+			this.encryptedPassword = hash;
+			resolve(); 
+		});
+	});
+	return promise;
+};
+
+userSchema.methods.verifyEncryptedPassword = function (plainPassword) {
+
+	var promise = new Promise( (resolve, reject) => {
+
+		bcrypt.compare(plainPassword, this.encryptedPassword).then( result => {
+			resolve(result); 
+		});
+	});
+	return promise;
+};
 
 const User = mongoose.model('User', userSchema);
 

@@ -26,15 +26,26 @@ Vue.createApp({
 			drink_hover: false,
 			shake_ingredients: [], 
 			edit: false,
+			edit_login: false,
+			edit_register: false,
 			currentDrink: {
 				name: "",
 				ingredients: [],
 				directions: ""
-			}
+			},
+			firstName: "",
+			lastName: "",
+			email: "",
+			showPassword: false,
+			password: null
 		};
 	},
 
 	methods: {
+	
+		toggleShow() {
+			this.showPassword = !this.showPassword;
+		},
 
 		updateDrinkName: function (drink) {
 
@@ -46,6 +57,7 @@ Vue.createApp({
 
 			fetch('/bar_books/' + drink._id, {
 				method: "PUT",
+				credentials: "include",
 				body: data,
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded"
@@ -70,6 +82,20 @@ Vue.createApp({
 	    },
 	    closePopup: function() {
 	      this.edit = false;
+	    },
+		
+	    showPopupLogin: function() {
+	      this.edit_login = true;
+	    },
+	    closePopupLogin: function() {
+	      this.edit_login = false;
+	    },
+		
+	    showPopupRegister: function() {
+	      this.edit_register = true;
+	    },
+	    closePopupRegister: function() {
+	      this.edit_register = false;
 	    },
 
 		searchIngredients: function () {
@@ -137,6 +163,7 @@ Vue.createApp({
 
 			fetch("/myselectedbaritems", {
 				method: "POST",
+				credentials: "include",
 				body: data,
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded"
@@ -188,6 +215,7 @@ Vue.createApp({
 
 			fetch("/bar_books", {
 				method: "POST",
+				credentials: "include",
 				body: data,
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded"
@@ -449,7 +477,10 @@ Vue.createApp({
 		this.getMySelectedBarItems();
 	}, 
 
-	mounted: function() {
-	}
+	computed: {
+	    buttonLabel() {
+	      return (this.showPassword) ? "Hide" : "Show";
+	    }
+  }
 
 }).mount("#app");

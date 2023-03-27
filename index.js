@@ -8,14 +8,41 @@ const model = require('./model');
 
 const port = process.env.PORT || 8080;
 
+const session = require('express-session');
+
+function authorizeRequest(req, res, next) {
+	if (req.session && req.session.userId) {
+		model.User.findOne({ _id: req.session.userId }).then(function (user) {
+
+		if (user) {
+			req.user = user;
+			next();
+
+		} else {
+			res.status(401).send("Unauthenticated");
+		}
+
+	});
+	} else {
+		res.status(401).send("Unauthenticated");
+	}	
+		
+}
+
+
 app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:false})); 
 
 app.use(cors());
 
+app.use(session({
+	secret: "Jk$e3jk%Kjl@3kjsAeRq%Jk$",
+	saveUninitialized: true,
+	resave: false
+}));
 
-
+const localhost = "http://localhost:8080"
 app.get('/spirits', function( req, res ) {
 
 	model.spirits.find().then(spirits => {
@@ -26,7 +53,7 @@ app.get('/spirits', function( req, res ) {
 
 });
 
-app.post('/myselectedbaritems', function( req, res ) {
+app.post('/myselectedbaritems', authorizeRequest, function( req, res ) {
 
 	const newSelectedBarItems = new model.mySelectedBarItems({
 		listedItem: req.body.listedItem
@@ -41,7 +68,7 @@ app.post('/myselectedbaritems', function( req, res ) {
 
 
 
-app.get('/myselectedbaritems', function( req, res ) {
+app.get('/myselectedbaritems', authorizeRequest, function( req, res ) {
 
 	model.mySelectedBarItems.find().then(mySelectedBarItems =>{
 		res.json(mySelectedBarItems);
@@ -196,8 +223,73 @@ app.get('/others', function( req, res ) {
 
 });
 
+app.post('/users', function (req, res) {
+	console.log('parsed request body');
+
+	const newUser = new model.User({
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		email: req.body.email
+	});
+	
+	newUser.setEncryptedPassword(req.body.password).then(function () {
+
+		newUser.save().then(() => {
+			console.log('User saved to db');
+			res.status(201).send('Created user');
+		}).catch((error) => {
+			if (error.code == 11000) {
+				res.status(422).json({
+					email: "Must be unique"
+				});
+			} else if (error.errors) {
+				let errorMesages = {};
+				for (let e in error.errors) {
+					errorMessages[e] = error.errors[e].message;
+				}
+				res.status(422).json(errorMessages);
+			} else {
+				console.error("Failed to save user to db", error);
+				res.status(500).send("Server failed to create user.");
+			}
+		});
+
+	});
+});
+
+app.post('/session', function (req, res) {
+
+	model.User.findOne({ email: req.body.email }).then(function (user) {
+
+		if (user) {
+
+			user.verifyEncryptedPassword(req.body.password).then(function (result) {
+
+				if (result){
+					req.session.userId = user._id;
+					res.status(201).send("Authenticated");
+				} else {
+					res.status(401).send("Unauthenticated");
+				}
+
+			});
+
+		} else {
+			res.status(401).send("Unauthenticated");
+		}
+
+	});
+
+});
+
+app.get('/session', authorizeRequest, function (req, res) {
+	console.log("the current session data: ", req.session);
+	res.json(req.user);
+})
+
+
 app.listen(port, function() {
 
-	console.log('Server Is Now Running On Port ${port}');
+	console.log(`Server Is Now Running On Port ${port}`);
 
 });

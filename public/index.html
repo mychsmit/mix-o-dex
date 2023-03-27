@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body id="app">
     <!-- Header --> 
   <header>
     <!-- Navigation bar with hamburger menu button -->
@@ -21,7 +21,7 @@
         <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
         <li><a href="#"><i class="fa-brands fa-square-pinterest"></i></a></li>
         <li class="border-right"></li>
-        <li><i class="fa-solid fa-user"></i> <a href="#">Login/Register</a></li>
+        <li><i class="fa-solid fa-user" v-on:click="showPopupLogin()" style="cursor:pointer;"></i> <a style="cursor:pointer" v-on:click="showPopupLogin()">Login</a>/<a style="cursor:pointer;" v-on:click="showPopupRegister()">Register</a></li>
       </ul>
     </div>
       <div class="logo">
@@ -42,19 +42,40 @@
       </form>
     </nav>
   </div>
-    <div v-if="edit" class="popup-overlay-user">
+    <div v-if="edit_login" class="popup-overlay-user">
       <div class="popup-user">
-        <span class="close" v-on:click="closePopupUser()">&times;</span>
-        <ul style="list-style:none;">
-          <!-- <span class="save_success">Save Was Successfull</span> -->
-          <img src="/cocktail.svg" alt="cocktail_icon"class="cocktail_icon">
-          <input class="title" style="border:1px solid black;" type="text" placeholder="currentDrink.name" v-model="currentDrink.name">
+        <span class="close" v-on:click="closePopupLogin()">&times;</span>
+          <img src="/FinalLogo.svg" >
+          <h3 class="credentials">Login</h3>
+          <input class="input" type="text" placeholder="Enter Email" v-model="email">
+          <input v-if="showPassword" class="input" type="text" placeholder="Create Password" v-model="password">
+          <input v-else class="input" type="password" placeholder="Create Password" v-model="password">
+          <button class="eye" @click="toggleShow"><span class="icon is-small is-right">
+            <i class="fas" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }"></i>
+          </span>
+        </button> 
           <br>
-          <li class="ingredients" v-for="ingredient in currentDrink.ingredients" style="line-height: 2;">{{ingredient}}</li>
+          <button class="submit">Submit</button>
+      </div>
+    </div>
+
+
+    <div v-if="edit_register" class="popup-overlay-user">
+      <div class="popup-user">
+        <span class="close" v-on:click="closePopupRegister()">&times;</span>
+          <img src="/FinalLogo.svg" >
+          <h3 style="color:black;">Register</h3>
+          <input class="input" type="text" placeholder="Enter First Name" v-model="firstName">
+          <input class="input" type="text" placeholder="Enter Last Name" v-model="lastName">
+          <input class="input" type="text" placeholder="Enter Email" v-model="email">
+          <input v-if="showPassword" class="input" type="text" placeholder="Create Password" v-model="password">
+          <input v-else class="input" type="password" placeholder="Create Password" v-model="password">
+          <button class="eye" @click="toggleShow"><span class="icon is-small is-right">
+            <i class="fas" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }"></i>
+          </span>
+        </button> 
           <br>
-          <li class="ingredients">{{currentDrink.directions}}</li>
-          <button class="edit" v-on:click="updateDrinkName(currentDrink)">Save</button>
-        </ul>
+          <button class="submit">Submit</button>
       </div>
     </div>
   </header> 
@@ -76,7 +97,7 @@
       Simply add any ingredients you have at home using the lists below, and we will show you all the cocktails you could possibly make!
     </p>
     <p>
-      Don't forget to create an account so you can save all your findings when searching for cocktails you can create! <a href="#">Click Here</a> To create an account.
+      Don't forget to create an account so you can save all your findings when searching for cocktails you can create! <a v-on:click="showPopupRegister()">Click Here</a> To create an account.
     </p>  
   </section>
 
@@ -96,7 +117,7 @@
         <p style="font-size: 0.9vw">Click the "Shake Ingredients" to craft all the cocktails you can make in your home.</p>
       </div>
     </section>
-    <section id="app" >
+    <section>
 
       <div class="start">
 
