@@ -533,29 +533,46 @@ Vue.createApp({
 
 		},
 
-		userLogsOut: function(userId) {
+		userLogsOut: function() {
 
-			fetch("/session/" + userId, {
+			fetch("/session/",  {
 				method: "DELETE",
 				credentials: "include"
 			}).then(response => {
-				console.log("User Logged Out");
-				this.loggedIn = false;
+				if (response.status == 204) {
+					console.log("User Logged Out");
+					this.loggedIn = false;
+				} else {
+					console.error("Failed to delete session on server");
+				}
 			});
 
 		},
 		
 		getUser: function () {
 
-			fetch("/session").then(response => {
+			fetch("/session", {
+				credentials: "include"
+			}).then(response => {
 
-				response.json().then(data => {
+				if( response.status == 200 ) {
 
-				console.log('loaded user cookie: ', data);
+					response.json().then(user => {
 
-				this.user = data;	
+					this.user = user;	
 
-				});
+					this.loggedIn = true;
+
+					this.getMySelectedBarItems();
+
+					console.log('User logged in');
+
+					});
+
+				} else {
+					this.loggedIn = false;
+					console.log('User Not Logged in')
+				}
 
 			});
 		},
@@ -569,7 +586,7 @@ Vue.createApp({
 		this.getWines();
 		this.getMixers();
 		this.getOthers();
-		this.getMySelectedBarItems();
+		this.getUser();
 	}, 
 
 	computed: {

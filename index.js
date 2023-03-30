@@ -14,7 +14,7 @@ function authorizeRequest(admin) {
 
 }
 
-function authorizeRequestAsUser(req, res, next) {
+function authorizeRequest(req, res, next) {
 	if (req.session && req.session.userId) {
 		model.User.findOne({ _id: req.session.userId }).then(function (user) {
 
@@ -38,7 +38,10 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:false})); 
 
-app.use(cors());
+app.use(cors( {
+	origin: 'null',
+	credentials: true
+}));
 
 app.use(session({
 	secret: "Jk$e3jk%Kjl@3kjsAeRq%Jk$",
@@ -288,13 +291,9 @@ app.post('/session', function (req, res) {
 
 });
 
-app.get('/session', function( req, res ) {
+app.get('/session', authorizeRequest, function( req, res ) {
 
-	if (req.session.userId) {
-		res.status(200).send("User Logged In")
-	} else {
-		res.status(404).send("User Not Found");
-	}
+	res.json(req.user);
 })
 
 // app.get('/session', authorizeRequest, function (req, res) {
