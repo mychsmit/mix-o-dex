@@ -10,7 +10,11 @@ const port = process.env.PORT || 8080;
 
 const session = require('express-session');
 
-function authorizeRequest(req, res, next) {
+function authorizeRequest(admin) {
+
+}
+
+function authorizeRequestAsUser(req, res, next) {
 	if (req.session && req.session.userId) {
 		model.User.findOne({ _id: req.session.userId }).then(function (user) {
 
@@ -27,7 +31,7 @@ function authorizeRequest(req, res, next) {
 		res.status(401).send("Unauthenticated");
 	}	
 		
-}
+};
 
 
 app.use(express.static('public'));
@@ -231,6 +235,8 @@ app.post('/users', function (req, res) {
 		lastName: req.body.lastName,
 		email: req.body.email
 	});
+
+	console.log(req.body.password, "password is");
 	
 	newUser.setEncryptedPassword(req.body.password).then(function () {
 
@@ -282,10 +288,24 @@ app.post('/session', function (req, res) {
 
 });
 
-app.get('/session', authorizeRequest, function (req, res) {
-	console.log("the current session data: ", req.session);
-	res.json(req.user);
+app.get('/session', function( req, res ) {
+
+	if (req.session.userId) {
+		res.status(200).send("User Logged In")
+	} else {
+		res.status(404).send("User Not Found");
+	}
 })
+
+// app.get('/session', authorizeRequest, function (req, res) {
+// 	console.log("the current session data: ", req.session);
+// 	res.json(req.user);
+// });
+
+app.delete('/session', function( req, res ) {
+	req.session.userId = undefined;
+	res.status(204).send("Session Ended");
+});
 
 
 app.listen(port, function() {

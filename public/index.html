@@ -21,7 +21,10 @@
         <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
         <li><a href="#"><i class="fa-brands fa-square-pinterest"></i></a></li>
         <li class="border-right"></li>
-        <li><i class="fa-solid fa-user" v-on:click="showPopupLogin()" style="cursor:pointer;"></i> <a style="cursor:pointer" v-on:click="showPopupLogin()">Login</a>/<a style="cursor:pointer;" v-on:click="showPopupRegister()">Register</a></li>
+        <li><i  class="fa-solid fa-user" v-on:click="showPopupLogin()" style="cursor:pointer;"></i> 
+          <a v-if="!loggedIn" style="cursor:pointer" v-on:click="showPopupLogin()"> Login </a><a v-if="!loggedIn" style="cursor:pointer;" v-on:click="showPopupRegister()">/ Register</a>
+          <a v-if="loggedIn" style="cursor:pointer;"> Account </a> <a v-if="loggedIn" v-on:click="userLogsOut()" style="cursor:pointer;"> / Logout</a>
+        </li>
       </ul>
     </div>
       <div class="logo">
@@ -47,15 +50,17 @@
         <span class="close" v-on:click="closePopupLogin()">&times;</span>
           <img src="/FinalLogo.svg" >
           <h3 class="credentials">Login</h3>
+          <h3 class="credentials" v-if="loggedIn">You have Successfully Logged In</h3>
+          <h3 v-if="incorrect" class="credentials">Email or Password is Incorrect!</h3>
           <input class="input" type="text" placeholder="Enter Email" v-model="email">
           <input v-if="showPassword" class="input" type="text" placeholder="Create Password" v-model="password">
-          <input v-else class="input" type="password" placeholder="Create Password" v-model="password">
+          <input v-else class="input" type="password" placeholder="Enter Password" v-model="password">
           <button class="eye" @click="toggleShow"><span class="icon is-small is-right">
             <i class="fas" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }"></i>
           </span>
         </button> 
           <br>
-          <button class="submit">Submit</button>
+          <button v-on:click="userLoggedIn()" class="submit">Submit</button>
       </div>
     </div>
 
@@ -64,7 +69,8 @@
       <div class="popup-user">
         <span class="close" v-on:click="closePopupRegister()">&times;</span>
           <img src="/FinalLogo.svg" >
-          <h3 style="color:black;">Register</h3>
+          <h3 v-if="!registered" style="color:black;">Register</h3>
+          <h3 v-if="registered" style="color:black;">You have successfully Registered.</h3>
           <input class="input" type="text" placeholder="Enter First Name" v-model="firstName">
           <input class="input" type="text" placeholder="Enter Last Name" v-model="lastName">
           <input class="input" type="text" placeholder="Enter Email" v-model="email">
@@ -75,7 +81,7 @@
           </span>
         </button> 
           <br>
-          <button class="submit">Submit</button>
+          <button class="submit" v-on:click="registerUser()">Submit</button>
       </div>
     </div>
   </header> 
@@ -168,7 +174,7 @@
 
 
         <div class="bar-list search-ingredients">
-          <ul v-for="items in mySelectedBarItems">
+          <ul v-if="loggedIn" v-for="items in mySelectedBarItems">
             <li class="list"  v-if="mySelectedBarItems.length > 0" v-on:click="deleteBarListItem(items)">{{items.listedItem}}</li>
           </ul>
         </div>

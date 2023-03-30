@@ -37,7 +37,12 @@ Vue.createApp({
 			lastName: "",
 			email: "",
 			showPassword: false,
-			password: null
+			password: "",
+			registered: false,
+			loggedIn: false,
+			loggedInUser: "", 
+			incorrect: false,
+			user: ""
 		};
 	},
 
@@ -73,7 +78,6 @@ Vue.createApp({
 			});
 
 		},
-
 		
 	    showPopup: function(currentDrinkId) {
 	      this.edit = true;
@@ -96,6 +100,7 @@ Vue.createApp({
 	    },
 	    closePopupRegister: function() {
 	      this.edit_register = false;
+	      this.registered = false;
 	    },
 
 		searchIngredients: function () {
@@ -169,7 +174,7 @@ Vue.createApp({
 					"Content-Type": "application/x-www-form-urlencoded"
 				}
 			}).then(response => {
-				if (response.status = 201) {
+				if (response.status == 201) {
 					this.getMySelectedBarItems();
 				} else {
 					console.log("Failed to add ingredient to bar list");
@@ -205,13 +210,45 @@ Vue.createApp({
 			});
 		},
 
+		registerUser: function() {
+
+			// var that = this;
+
+			var data = "firstName=" + encodeURIComponent(this.firstName);
+			data += "&lastName=" + encodeURIComponent(this.lastName);
+			data += "&email=" + encodeURIComponent(this.email);
+			data += "&password=" + encodeURIComponent(this.password);
+			
+			fetch('/users', {
+				method: "POST",
+				credentials: "include",
+				body: data, 
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded"
+				}
+			}).then(response => {
+				if (response.status == 201) {
+					this.registered = true;
+					this.firstName = "";
+					this.lastName = "";
+					this.email = "";
+					this.password  = "";
+
+					console.log("User Created");
+				} else {
+					console.log("Failed to add ingredient to bar list");
+				}
+			});
+
+		}, 
+
 		addDrinkToBarBook: function() {
 
 			var that = this;
 
-			var name = "name=" + encodeURIComponent(this.name);
-			data + "&ingredients=" + encodeURIComponent(this.ingredients);
-			data + "&directions=" + encodeURIComponent(this.directions);
+			var data = "name=" + encodeURIComponent(this.name);
+			data += "&ingredients=" + encodeURIComponent(this.ingredients);
+			data += "&directions=" + encodeURIComponent(this.directions);
 
 			fetch("/bar_books", {
 				method: "POST",
@@ -221,7 +258,7 @@ Vue.createApp({
 					"Content-Type": "application/x-www-form-urlencoded"
 				}
 			}).then(response => {
-				if (response.status = 201) {
+				if (response.status == 201) {
 					this.getBarBook();
 				} else {
 					console.log("Failed to add drink to bar book");
@@ -452,7 +489,8 @@ Vue.createApp({
 		deleteBarListItemFromDB: function(listedbaritemId) {
 
 			fetch("/myselectedbaritems/" + listedbaritemId, {
-				method: "DELETE"
+				method: "DELETE",
+				credentials: "include"
 			}).then(response => {
 				console.log("Listed Bar Item Deleted");
 				this.getMySelectedBarItems();
@@ -463,6 +501,63 @@ Vue.createApp({
 		deleteBarListItem: function (listedbaritem) {
 			console.log("Attempt to delete a listed bar item");
 			this.deleteBarListItemFromDB(listedbaritem._id);
+		},
+
+		userLoggedIn: function() {
+
+			var data = "email=" + encodeURIComponent(this.email);
+			data += "&password=" + encodeURIComponent(this.password);
+
+			fetch('/session', {
+				method: "POST",
+				credentials: "include",
+				body:data,
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded"
+				}
+			}).then(response => {
+				if (response.status == 201) {
+					this.loggedIn = true;
+					this.email = "";
+					this.password = "";
+					this.incorrect = false;
+					this.getMySelectedBarItems();
+
+					console.log("User successfully Logged in");
+				} else {
+					console.log("User Failed To Log In");
+					this.incorrect = true;
+					this.loggedIn = false;
+				}
+			});
+
+		},
+
+		userLogsOut: function(userId) {
+
+			fetch("/session/" + userId, {
+				method: "DELETE",
+				credentials: "include"
+			}).then(response => {
+				console.log("User Logged Out");
+				this.loggedIn = false;
+			});
+
+		},
+		
+		getUser: function () {
+
+			fetch("/session").then(response => {
+
+				response.json().then(data => {
+
+				console.log('loaded user cookie: ', data);
+
+				this.user = data;	
+
+				});
+
+			});
 		},
 	},
 
