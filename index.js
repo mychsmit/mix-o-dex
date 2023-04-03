@@ -63,7 +63,8 @@ app.get('/spirits', function( req, res ) {
 app.post('/myselectedbaritems', authorizeRequest, function( req, res ) {
 
 	const newSelectedBarItems = new model.mySelectedBarItems({
-		listedItem: req.body.listedItem
+		listedItem: req.body.listedItem,
+		user: req.user._id
 	});
 
 	console.log('Post Response Initiated');

@@ -42,7 +42,8 @@ Vue.createApp({
 			loggedIn: false,
 			loggedInUser: "", 
 			incorrect: false,
-			user: ""
+			user: "",
+			uniqueEmail: false
 		};
 	},
 
@@ -233,8 +234,13 @@ Vue.createApp({
 					this.lastName = "";
 					this.email = "";
 					this.password  = "";
+					this.uniqueEmail = false;
 
 					console.log("User Created");
+				} else if (response.status == 422) {
+					console.log("Email Must Be Unique");
+					this.uniqueEmail = true;
+
 				} else {
 					console.log("Failed to add ingredient to bar list");
 				}

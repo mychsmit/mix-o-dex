@@ -72,6 +72,7 @@
           <img src="/FinalLogo.svg" >
           <h3 v-if="!registered" style="color:black;">Register</h3>
           <h3 v-if="registered" style="color:black;">You have successfully Registered.</h3>
+          <h3 v-if="uniqueEmail" style="color:black;">User Already Exists With That Email.</h3>
           <input class="input" type="text" placeholder="Enter First Name" v-model="firstName">
           <input class="input" type="text" placeholder="Enter Last Name" v-model="lastName">
           <input class="input" type="text" placeholder="Enter Email" v-model="email">

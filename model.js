@@ -35,6 +35,19 @@ const mySelectedBarItems = mongoose.model('mySelectedBarItems', {
 	listedItem: String
 });
 
+// const barItemsSchema = new mongoose.Schema({
+// 	listedItem: {
+// 		type: String
+// 	},
+// 	user: {
+// 		type: Schema.Types.ObjectId,
+// 		ref: 'User',
+// 		required: true
+// 	}
+// });
+
+// const mySelectedBarItems = mongoose.model('mySelectedBarItems', barItemsSchema);
+
 const bar_books = mongoose.model('bar_books', {
 	name: String,
 	ingredients: [String],
