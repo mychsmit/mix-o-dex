@@ -86,7 +86,7 @@ app.get('/myselectedbaritems', authorizeRequest, function( req, res ) {
 
 });
 
-app.delete('/myselectedbaritems/:listedItemId', function( req, res ) {
+app.delete('/myselectedbaritems/:listedItemId', authorizeRequest, function( req, res ) {
 	model.mySelectedBarItems.findOne({ _id: req.params.listedItemId }).then(listedItem => {
 		if (listedItem) {
 			model.mySelectedBarItems.deleteOne({ _id: req.params.listedItemId }).then(() => {
@@ -117,7 +117,7 @@ model.bar_books.findOne({_id: req.params.currentDrinkId}).then(currentDrink =>{
 
 });
 
-app.put('/bar_books/:currentDrinkId', function( req, res ) {
+app.put('/bar_books/:currentDrinkId', authorizeRequest, function( req, res ) {
 	model.bar_books.findOne({_id: req.params.currentDrinkId}).then(currentDrink => {
 
 		if (currentDrink) {

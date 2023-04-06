@@ -43,11 +43,20 @@ Vue.createApp({
 			loggedInUser: "", 
 			incorrect: false,
 			user: "",
-			uniqueEmail: false
+			uniqueEmail: false,
+			support: false
 		};
 	},
 
 	methods: {
+
+		toggleSupport() {
+			if (this.support) {
+				this.support = false;
+			} else {
+				this.support = true;
+			}
+		},
 	
 		toggleShow() {
 			this.showPassword = !this.showPassword;

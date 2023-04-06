@@ -547,6 +547,7 @@ footer {
 }
 
 .results {
+
 }
 
 
@@ -668,6 +669,7 @@ i:hover {
   overflow-x:hidden;
   overflow-y: scroll;
   padding-top: 30px;
+  margin-bottom: 80px;
 }
 .results-div::-webkit-scrollbar {
   background-color:transparent;
@@ -911,6 +913,35 @@ i:hover {
 
 .eye {
   position:absolute;
+}
+
+.support {
+  position: fixed;
+  z-index: 999999;
+  width: 500px;
+  background-color: #d58e43;
+  color: black;
+  text-align: center;
+  font-size: 35px;
+  bottom: 0;
+  border-radius: 10px 10px 0 0;
+  right: 20px;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 18px rgba(0,0,0,0.2);
+  transition: height 0.8s ease-in-out;
+}
+
+.support i {
+  color: #000;
+  position: relative;
+  left: 0;
+  top: 2px;
+}
+
+.support-box {
+  height: 400px;
+  background-color: #ccc;
+  transition: height 0.8s ease-in-out;
 }
 
 
