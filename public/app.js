@@ -30,7 +30,7 @@ Vue.createApp({
 			edit_register: false,
 			currentDrink: {
 				name: "",
-				ingredients: [],
+				ingredients: [], 
 				directions: ""
 			},
 			firstName: "",

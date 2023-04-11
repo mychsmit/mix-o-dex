@@ -238,7 +238,7 @@ app.post('/users', function (req, res) {
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		email: req.body.email
-	});
+	}); 
 
 	console.log(req.body.password, "password is");
 	

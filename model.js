@@ -32,7 +32,7 @@ const others = mongoose.model('others', {
 });
 
 const mySelectedBarItems = mongoose.model('mySelectedBarItems', { 
-	listedItem: String
+	listedItem: String 
 });
 
 // const barItemsSchema = new mongoose.Schema({
