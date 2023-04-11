@@ -858,6 +858,37 @@ i:hover {
   cursor: pointer;
 }
 
+.support_close {
+  color: #000;
+    position: relative;
+    top: 53%;
+    left: 27%;
+    font-size: 35px;
+    z-index: 9999999;
+}
+
+.support_close:hover,
+.support_close:focus {
+  color: #FF0000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.support_open {
+  color: #000;
+  float: right;
+  font-size: 48px;
+  font-weight: bold;
+  z-index: 9999;
+}
+
+.support_open:hover,
+.support_open:focus {
+  color: #FF0000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .save_success {
   background-color: #f68915;
   position: absolute;
@@ -917,7 +948,6 @@ i:hover {
 
 .support {
   position: fixed;
-  z-index: 999999;
   width: 500px;
   background-color: #d58e43;
   color: black;
@@ -928,10 +958,11 @@ i:hover {
   right: 20px;
   text-transform: uppercase;
   box-shadow: 6px 6px 18px rgba(0,0,0,0.2);
-  transition: height 0.8s ease-in-out;
+  transition: 0.8s all ease-in-out;
+  border: 1px solid black;
 }
 
-.support i {
+.support .fa-ticket {
   color: #000;
   position: relative;
   left: 0;
@@ -941,8 +972,35 @@ i:hover {
 .support-box {
   height: 400px;
   background-color: #ccc;
-  transition: height 0.8s ease-in-out;
+  transition: 0.8s all ease-in-out;
+  box-shadow: inset 6px 6px 18px rgba(0,0,0,0.2);
+  border-top: 1px solid black;
 }
+
+
+.support_input {
+  background-color: #fff;
+  width: 480px !important;
+  height: 40px; 
+  text-align: left !important;
+  font-size: 18px;
+  box-shadow: inset 4px 4px 10px rgba(0,0,0,0.2);
+}
+
+.support_button {
+  position: absolute;
+  height: 52px;
+  right: 0px;
+  width: 100px;
+  background-color: #d58e43;
+  transition: 0.3s all ease-in-out;
+}
+
+.support_button:hover {
+  font-size: 23px;
+
+}
+
 
 
 

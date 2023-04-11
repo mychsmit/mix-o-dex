@@ -228,10 +228,17 @@
           </ul>
 
       </div>
-      <!-- <div class="support" v-on:click="toggleSupport()">
-        <i class="fa-regular fa-ticket"></i> Support
-        <div class="support-box" v-if="support"></div>
-      </div> -->
+      <div class="support">
+        <div><i class="fa-regular fa-ticket"></i> Support 
+        <i class="fa-solid fa-rectangle-xmark support_close" v-if="support" @click="closeSupport()"></i>
+        <i class="fa-solid fa-square-caret-up support_close" v-if="!support" @click="openSupport()"></i></div>
+        <div class="support-box" v-if="support">
+        </div>
+        <div>
+          <input class="support_input" v-model="support_input" v-if="support">
+          <button class="support_button" v-if="support" >Send</button>
+        </div>
+      </div>
       </section>
     </section>
 

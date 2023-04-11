@@ -44,21 +44,22 @@ Vue.createApp({
 			incorrect: false,
 			user: "",
 			uniqueEmail: false,
-			support: false
+			support: false,
+			support_input: ""
 		};
 	},
 
 	methods: {
 
-		toggleSupport() {
-			if (this.support) {
-				this.support = false;
-			} else {
-				this.support = true;
-			}
+		openSupport: function() {
+			this.support = true;
+		},
+
+		closeSupport: function() {
+			this.support = false;
 		},
 	
-		toggleShow() {
+		toggleShow: function() {
 			this.showPassword = !this.showPassword;
 		},
 
