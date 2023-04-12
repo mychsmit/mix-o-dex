@@ -99,157 +99,45 @@
     </div>
   </div>
 
-  <section class="create">
-    <h2>Create A Cocktail</h2>
-    <hr class="divider"/>
-    <p>
-      Simply add any ingredients you have at home using the lists below, and we will show you all the cocktails you could possibly make!
-    </p>
-    <p>
-      Don't forget to create an account so you can save all your findings when searching for cocktails you can create! <a v-on:click="showPopupRegister()">Click Here</a> To create an account.
-    </p>  
+
+
+  <section class="support-section">
+    
+          <div class="support-tickets">
+          <ul>
+            <ul>
+              <li class="support-user-ticket">Email </li>
+              <li class="support-user-ticket">Email </li>
+          </ul>
+        </div>
+        <div class="support-messages">
+          <div class="support-details">
+          <h3>Email</h3>
+          <h5>Subject</h5>
+          <div class='incoming'>
+            <p class="support-email"> Email</p>
+            <p class="support-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et turpis at turpis facilisis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed tempor elit vitae est viverra, ac fermentum dolor pretium. Cras nec eros ex. Mauris interdum tellus a ultrices efficitur. Proin ut mi non nisl iaculis sodales. Etiam ultrices justo tincidunt efficitur hendrerit. Phasellus a porttitor tortor. Praesent quam neque, commodo eget facilisis eu, finibus vitae nulla. Etiam ac odio magna. Cras eget elit in justo suscipit tempor. Nullam vel viverra augue. Donec efficitur odio at dui gravida rutrum.</p>
+            </div>
+          <div class="outgoing">
+            <p class="support-email"> Email</p>
+            <p class="support-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et turpis at turpis facilisis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed tempor elit vitae est viverra, ac fermentum dolor pretium. Cras nec eros ex. Mauris interdum tellus a ultrices efficitur. Proin ut mi non nisl iaculis sodales. Etiam ultrices justo tincidunt efficitur hendrerit. Phasellus a porttitor tortor. Praesent quam neque, commodo eget facilisis eu, finibus vitae nulla. Etiam ac odio magna. Cras eget elit in justo suscipit tempor. Nullam vel viverra augue. Donec efficitur odio at dui gravida rutrum.</p>
+            </div>
+
+          <div class="bottom"></div>
+          </div>
+          
+        </div>
+    
+    
   </section>
 
-    <section id="create">
-      <div class="text-one">
-        <h3>Search For Your Ingredients</h3>
-        <p style="font-size: 0.9vw">Browse the categories or type your ingredients in the search bar.</p>
-      </div>
 
-      <div class="text-two">
-        <h3>Select Your Ingredients</h3>
-        <p style="font-size: 0.9vw">Select the ingredients you have in your home to add them to your list.</p>
-      </div>
-
-      <div class="text-three">
-        <h3>Craft Your Cocktail</h3>
-        <p style="font-size: 0.9vw">Click the "Shake Ingredients" to craft all the cocktails you can make in your home.</p>
-      </div>
-    </section>
-    <section>
-
-      <div class="start">
-
-      <div class="search-ingredients">
-        <ul>
-          <li class="spirits" v-on:click="showSpirits"><a>Spirits</a></li>
-          <li class="liqueurs" v-on:click="showLiqueurs"><a>Liqueurs</a></li>
-          <li class="beers" v-on:click="showBeers"><a>Beers</a></li>
-          <li class="wine" v-on:click="showWines"><a>Wine</a></li>
-          <li class="mixers" v-on:click="showMixers"><a>Mixers</a></li>
-          <li class="others" v-on:click="showOthers"><a>Other</a></li>
-        </ul>
-      </div>
-      
-        <div class="results search-ingredients">
-          <ul v-for="spirit in spirits" v-if="show_spirits">
-            <li class="spirits" v-on:click="showBrands(spirit.brands)">{{spirit.type}}</li>
-          </ul>
-
-          <ul v-for="liqueur in liqueurs" v-if="show_liqueurs">
-            <li class="liqueurs" v-on:click="showBrands(liqueur.brands)">{{liqueur.type}}</li>
-          </ul>
-
-          <ul v-for="beer in beers_ciders" v-if="show_beers">
-            <li class="beers" v-on:click="showBrands(beer.brands)">{{beer.type}}</li>
-          </ul>
-
-          <ul v-for="wine in wines" v-if="show_wines">
-            <li class="wine" v-on:click="showBrands(wine.brands)">{{wine.type}}</li>
-          </ul>
-
-          <ul v-for="mixer in mixers" v-if="show_mixers">
-            <li class="mixers" v-on:click="showBrands(mixer.brands)">{{mixer.type}}</li>
-          </ul>
-
-          <ul v-for="other in others" v-if="show_others">
-            <li class="others" v-on:click="showBrands(other.brands)">{{other.type}}</li>
-          </ul>
-            
-        </div>
-
-        <div class="secondary search-ingredients">
-          
-          <ul>
-            <li class="spiritBrand" v-for="brand in selectedBrands" v-if="show_sub" v-on:click="addIngredientsToBarList(brand)">{{brand}}</li>
-          </ul>
-        </div>
-
-
-        <div class="bar-list search-ingredients">
-          <ul v-if="loggedIn" v-for="items in mySelectedBarItems">
-            <li class="list"  v-if="mySelectedBarItems.length > 0" v-on:click="deleteBarListItem(items)">{{items.listedItem}}</li>
-          </ul>
-        </div>
-        </div>
-
-            
-
-    <div class="shake">
-      <button v-on:click="searchIngredients()">Shake Ingredients</button>
-
-    </div>
-    <section class="bar-results">
-
-      <div class="results-div">
-
-        <div v-if="edit" class="popup-overlay">
-          <div class="popup">
-            <span class="close" v-on:click="closePopup()">&times;</span>
-            <ul style="list-style:none;">
-              <!-- <span class="save_success">Save Was Successfull</span> -->
-              <img src="/cocktail.svg" alt="cocktail_icon"class="cocktail_icon">
-              <input class="title" style="border:1px solid black;" type="text" placeholder="currentDrink.name" v-model="currentDrink.name">
-              <br>
-              <li class="ingredients" v-for="ingredient in currentDrink.ingredients" style="line-height: 2;">{{ingredient}}</li>
-              <br>
-              <li class="ingredients">{{currentDrink.directions}}</li>
-              <button class="edit" v-on:click="updateDrinkName(currentDrink), searchIngredients()">Save</button>
-            </ul>
+        <div class="support-submit-input">
+          <div class="support-input-system">
+              <input class="support-input" type="text" placeholder="Type Message Here">
+              <button class="support-submit-button">Send</button>
           </div>
         </div>
-
-
-          
-          <ul class="listed-results">
-            
-            <li v-for="drinks in bar_books">
-                <ul class="single-result" v-on:click="showPopup(drinks._id)">
-                    <img src="/cocktail.svg" alt="cocktail_icon"class="cocktail_icon">
-                    <li class="title">
-                      {{drinks.name}}
-                    </li>
-                    <li class="ingredients"v-for="ingredient in drinks.ingredients">
-                      {{ingredient}}
-                    </li>
-                </ul>
-
-            </li> 
-
-          </ul>
-
-      </div>
-      <div class="support">
-        <div><i class="fa-regular fa-ticket"></i> Support 
-        <i class="fa-solid fa-rectangle-xmark support_close" v-if="support" @click="closeSupport()"></i>
-        <i class="fa-solid fa-square-caret-up support_close" v-if="!support" @click="openSupport()"></i></div>
-        <div class="support-box" v-if="support">
-          <div class="chat-messages">
-            <div class="chat-bubble support-incoming">
-              <p>Hello, how can I help you today?</p>
-            </div>
-            <div class="chat-bubble support-outgoing">
-              <p>I have a question about your product.</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <input class="support_input" v-model="support_input" v-if="support">
-          <button class="support_button" v-if="support" >Send</button>
-        </div>
-      </div>
-      </section>
-    </section>
 
     <footer style="margin: 0; padding: 0;">
       <nav style="margin: 0; padding: 0;">
