@@ -45,7 +45,13 @@ Vue.createApp({
 			user: "",
 			uniqueEmail: false,
 			support: false,
-			support_input: ""
+			support_input: "",
+			support_bubble_incoming: "",
+			support_bubble_outgoing: "",
+			support_page_incoming: "",
+			support_page_outgoing: "",
+			support_page_response: ""
+
 		};
 	},
 

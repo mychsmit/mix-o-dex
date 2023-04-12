@@ -112,8 +112,8 @@
         </div>
         <div class="support-messages">
           <div class="support-details">
-          <h3>Email</h3>
-          <h5>Subject</h5>
+          <h3>Subject</h3>
+          <h4>Email</h4>
           <div class='incoming'>
             <p class="support-email"> Email</p>
             <p class="support-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et turpis at turpis facilisis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed tempor elit vitae est viverra, ac fermentum dolor pretium. Cras nec eros ex. Mauris interdum tellus a ultrices efficitur. Proin ut mi non nisl iaculis sodales. Etiam ultrices justo tincidunt efficitur hendrerit. Phasellus a porttitor tortor. Praesent quam neque, commodo eget facilisis eu, finibus vitae nulla. Etiam ac odio magna. Cras eget elit in justo suscipit tempor. Nullam vel viverra augue. Donec efficitur odio at dui gravida rutrum.</p>
@@ -134,7 +134,7 @@
 
         <div class="support-submit-input">
           <div class="support-input-system">
-              <input class="support-input" type="text" placeholder="Type Message Here">
+              <input class="support-input" type="text" placeholder="Type Message Here" v-model="support_page_response">
               <button class="support-submit-button">Send</button>
           </div>
         </div>
@@ -142,10 +142,11 @@
     <footer style="margin: 0; padding: 0;">
       <nav style="margin: 0; padding: 0;">
         <ul class="links">
-          <li><a href="#">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="#">Bar Book</a></li>
           <li><a href="#">My Bar</a></li>
           <li><a href="#">Random Cocktail</a></li>
+          <li><a href="/support.html">Support</a></li>
         </ul>
         <ul class="social">
           <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>

@@ -311,22 +311,23 @@ app.delete('/session', function( req, res ) {
 });
 
 
-// const wss = new WebSocket.Server({port:8080});
 
 
-// wss.on('connection', function (wsclient) {
-// 	wsclient.on('message', function message(data) {
-// 		wss.clients.forEach(function (client) {
-// 			if(client.readyState == WebSocket.OPEN && client != wsclient) {
-// 				client.send(data, {binary: false});
-// 			};
-// 		});
-// 	});
-// });
-
-
-app.listen(port, '0.0.0.0', function() {
+const server = app.listen(port, '0.0.0.0', function() {
 
 	console.log(`Server Is Now Running On Port ${port}`);
 
+});
+
+const wss = new WebSocket.Server({server:server});
+
+
+wss.on('connection', function (wsclient) {
+	wsclient.on('message', function message(data) {
+		wss.clients.forEach(function (client) {
+			if(client.readyState == WebSocket.OPEN && client != wsclient) {
+				client.send(data, {binary: false});
+			};
+		});
+	});
 });
