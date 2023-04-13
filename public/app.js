@@ -56,7 +56,10 @@ Vue.createApp({
 			sent_message: false,
 			incoming_message: false,
 			support_incoming: false,
-			support_outoing: true
+			support_outoing: true,
+			support_bubble_messages: [],
+			support_page_messages: [],
+			support_page_emails: []
 
 		};
 	},
@@ -612,30 +615,68 @@ Vue.createApp({
 		},
 
 		connectSocket: function () {
+
 			this.socket = new WebSocket("ws://localhost:8080");
+
 			this.socket.onmessage = (event) => {
+
 				this.handleMessageFromSocket(event.data);
+
 			}
+
 		},
+
 		handleMessageFromSocket: function (data) {
+
 			console.log("message received from socket:", event.data);
+
+			var parsedData = JSON.parse(data);
+
+			this.email = parsedData.email;
+
+			this.support_page_messages.push(parsedData.subscriberMessage);
+
+			this.support_incoming = true;
+
+
 		},
-		sendMessageToSupport: function (message) {
-			this.email = message.email;
-			this.support_outgoing_message = message.subscriberMessage;
-			this.support_page_incoming = message.subscriberMessage;
-			this.sent_message = true;
-		},
+
 		sendMessageToSocket: function () {
+
 			var message = {
+
 				email: this.user.email,
+
 				subscriberMessage: this.support_bubble_outgoing
+
 			}
-			this.socket.send(JSON.stringify(message))
+
+			this.socket.send(JSON.stringify(message));
+
 			this.sendMessageToSupport(message)
+
 			this.support_bubble_outgoing = "";
+
+		},
+
+		sendMessageToSupport: function (message) {
+
+			this.support_bubble_messages.push(message.subscriberMessage)
+
+		},
+
+		sendMessageToUser: function () {
+			var message = {
+				supportMessage: this.support_page_response
+			}
+
+			this.socket.send(JSON.stringify(message));
+
+			this.support_page_response = ""
 		}
+
 	},
+
 
 
 	created: function () {

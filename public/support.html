@@ -112,13 +112,12 @@
         </div>
         <div class="support-messages">
           <div class="support-details">
-          <div v-if="support_incoming" class='incoming'>
+          <div v-if="support_page_messages.length > 0" v-for="message in support_page_messages" class='incoming'>
             <p class="support-email">{{email}}</p>
-            <p class="support-message">{{support_page_incoming}}</p>
+            <p class="support-message">{{message}}</p>
           </div>
-          <div class="outgoing">
-            <p class="support-email"> Email</p>
-            <p class="support-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et turpis at turpis facilisis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed tempor elit vitae est viverra, ac fermentum dolor pretium. Cras nec eros ex. Mauris interdum tellus a ultrices efficitur. Proin ut mi non nisl iaculis sodales. Etiam ultrices justo tincidunt efficitur hendrerit. Phasellus a porttitor tortor. Praesent quam neque, commodo eget facilisis eu, finibus vitae nulla. Etiam ac odio magna. Cras eget elit in justo suscipit tempor. Nullam vel viverra augue. Donec efficitur odio at dui gravida rutrum.</p>
+          <div v-if="support_outgoing" class="outgoing">
+            <p class="support-message"></p>
             </div>
 
           <div class="bottom"></div>

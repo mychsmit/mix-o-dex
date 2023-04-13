@@ -238,8 +238,8 @@
             <div class="chat-bubble support_incoming">
               <p>Hello, how can I help you today?</p>
             </div>
-            <div v-if="sent_message" class="chat-bubble support_outgoing">
-              <p>{{support_outgoing_message}}</p>
+            <div v-if="support_bubble_messages.length > 0" v-for="message in support_bubble_messages" class="chat-bubble support_outgoing">
+              <p>{{message}}</p>
             </div>
           </div>
         </div>
