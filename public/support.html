@@ -106,18 +106,16 @@
           <div class="support-tickets">
           <ul>
             <ul>
-              <li class="support-user-ticket">Email </li>
+              <li class="support-user-ticket">{{email}} </li>
               <li class="support-user-ticket">Email </li>
           </ul>
         </div>
         <div class="support-messages">
           <div class="support-details">
-          <h3>Subject</h3>
-          <h4>Email</h4>
-          <div class='incoming'>
-            <p class="support-email"> Email</p>
-            <p class="support-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et turpis at turpis facilisis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed tempor elit vitae est viverra, ac fermentum dolor pretium. Cras nec eros ex. Mauris interdum tellus a ultrices efficitur. Proin ut mi non nisl iaculis sodales. Etiam ultrices justo tincidunt efficitur hendrerit. Phasellus a porttitor tortor. Praesent quam neque, commodo eget facilisis eu, finibus vitae nulla. Etiam ac odio magna. Cras eget elit in justo suscipit tempor. Nullam vel viverra augue. Donec efficitur odio at dui gravida rutrum.</p>
-            </div>
+          <div v-if="support_incoming" class='incoming'>
+            <p class="support-email">{{email}}</p>
+            <p class="support-message">{{support_page_incoming}}</p>
+          </div>
           <div class="outgoing">
             <p class="support-email"> Email</p>
             <p class="support-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et turpis at turpis facilisis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed tempor elit vitae est viverra, ac fermentum dolor pretium. Cras nec eros ex. Mauris interdum tellus a ultrices efficitur. Proin ut mi non nisl iaculis sodales. Etiam ultrices justo tincidunt efficitur hendrerit. Phasellus a porttitor tortor. Praesent quam neque, commodo eget facilisis eu, finibus vitae nulla. Etiam ac odio magna. Cras eget elit in justo suscipit tempor. Nullam vel viverra augue. Donec efficitur odio at dui gravida rutrum.</p>
@@ -135,7 +133,7 @@
         <div class="support-submit-input">
           <div class="support-input-system">
               <input class="support-input" type="text" placeholder="Type Message Here" v-model="support_page_response">
-              <button class="support-submit-button">Send</button>
+              <button @click="sendMessageToSocket"class="support-submit-button">Send</button>
           </div>
         </div>
 

@@ -46,11 +46,17 @@ Vue.createApp({
 			uniqueEmail: false,
 			support: false,
 			support_input: "",
+			support_outgoing_message: "",
 			support_bubble_incoming: "",
 			support_bubble_outgoing: "",
 			support_page_incoming: "",
 			support_page_outgoing: "",
-			support_page_response: ""
+			support_page_response: "", 
+			socket: null,
+			sent_message: false,
+			incoming_message: false,
+			support_incoming: false,
+			support_outoing: true
 
 		};
 	},
@@ -553,6 +559,9 @@ Vue.createApp({
 				}
 			});
 
+
+      		window.location.reload();
+
 		},
 
 		userLogsOut: function() {
@@ -568,6 +577,9 @@ Vue.createApp({
 					console.error("Failed to delete session on server");
 				}
 			});
+
+
+      		window.location.reload();
 
 		},
 		
@@ -598,6 +610,31 @@ Vue.createApp({
 
 			});
 		},
+
+		connectSocket: function () {
+			this.socket = new WebSocket("ws://localhost:8080");
+			this.socket.onmessage = (event) => {
+				this.handleMessageFromSocket(event.data);
+			}
+		},
+		handleMessageFromSocket: function (data) {
+			console.log("message received from socket:", event.data);
+		},
+		sendMessageToSupport: function (message) {
+			this.email = message.email;
+			this.support_outgoing_message = message.subscriberMessage;
+			this.support_page_incoming = message.subscriberMessage;
+			this.sent_message = true;
+		},
+		sendMessageToSocket: function () {
+			var message = {
+				email: this.user.email,
+				subscriberMessage: this.support_bubble_outgoing
+			}
+			this.socket.send(JSON.stringify(message))
+			this.sendMessageToSupport(message)
+			this.support_bubble_outgoing = "";
+		}
 	},
 
 
@@ -609,6 +646,9 @@ Vue.createApp({
 		this.getMixers();
 		this.getOthers();
 		this.getUser();
+		this.connectSocket();
+
+
 	}, 
 
 	computed: {

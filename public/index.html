@@ -235,17 +235,17 @@
         <i class="fa-solid fa-square-caret-up support_close" v-if="!support" @click="openSupport()"></i></div>
         <div class="support-box" v-if="support">
           <div class="chat-messages">
-            <div class="chat-bubble support-incoming">
+            <div class="chat-bubble support_incoming">
               <p>Hello, how can I help you today?</p>
             </div>
-            <div class="chat-bubble support-outgoing">
-              <p>I have a question about your product.</p>
+            <div v-if="sent_message" class="chat-bubble support_outgoing">
+              <p>{{support_outgoing_message}}</p>
             </div>
           </div>
         </div>
         <div>
-          <input class="support_input" v-model="support_input" v-if="support">
-          <button class="support_button" v-if="support" >Send</button>
+          <input class="support_input" v-model="support_bubble_outgoing" v-if="support">
+          <button @click="sendMessageToSocket" class="support_button" v-if="support" >Send</button>
         </div>
       </div>
       </section>

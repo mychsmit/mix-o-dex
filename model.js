@@ -35,6 +35,8 @@ const mySelectedBarItems = mongoose.model('mySelectedBarItems', {
 	listedItem: String 
 });
 
+
+
 // const barItemsSchema = new mongoose.Schema({
 // 	listedItem: {
 // 		type: String
@@ -96,6 +98,8 @@ userSchema.methods.verifyEncryptedPassword = function (plainPassword) {
 	});
 	return promise;
 };
+
+
 
 const User = mongoose.model('User', userSchema);
 

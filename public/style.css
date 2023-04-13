@@ -998,6 +998,8 @@ i:hover {
   text-align: left !important;
   font-size: 18px;
   box-shadow: inset 4px 4px 10px rgba(0,0,0,0.2);
+  text-transform:none;
+  font-family: Trykker, serif !important;
 }
 
 .support_button {
@@ -1147,7 +1149,7 @@ i:hover {
 }
 
 .chat-bubble {
-  display: inline-block;
+  display: block;
   padding: 5px 15px;
   border-radius: 20px;
   margin: 5px;
@@ -1156,11 +1158,11 @@ i:hover {
   text-transform:none;
 }
 
-.support-incoming {
+.support_incoming {
   background-color: #fff;
 }
 
-.support-outgoing {
+.support_outgoing {
   background-color: #e0e0e0;
 }
 
