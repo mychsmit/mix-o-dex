@@ -62,9 +62,10 @@ Vue.createApp({
 			support_page_emails: [],
 			messages: {
 				emails: {
-					user: "",
+					email: "",
 					messages: [""]
-				}
+				}, 
+				user: ""
 			}
 
 		};
@@ -638,47 +639,65 @@ Vue.createApp({
 
 			var parsedData = JSON.parse(data);
 
-			this.email = parsedData.email;
+			if (parsedData.user == "subscriber") {
 
-			this.support_page_messages.push(parsedData.subscriberMessage);
+				this.email = parsedData.emails.email;
 
-			this.support_bubble_messages.push(parsedData.supportMessage);
+				this.support_bubble_messages.push(parsedData.emails.messages);
+
+				this.support_page_messages.push(parsedData.emails.messages);
+				
+			} else if (parsedData.user == "support") {
+				
+				this.support_page_messages.push(parsedData.emails.messages);
+
+				this.support_bubble_messages.push(parsedData.emails.messages);
+
+			}
+
 
 
 		},
 
 		sendMessageToSocket: function () {
 
-			var message = {
-
-				email: this.user.email,
-
-				subscriberMessage: this.support_bubble_outgoing
-
+			var allMessages = {
+				emails: {
+					email: this.user.email,
+					messages: this.support_bubble_outgoing
+				}, 
+				user: "subscriber"
 			}
 
-			this.socket.send(JSON.stringify(message));
+			this.socket.send(JSON.stringify(allMessages));
 
-			this.sendMessageToSupport(message)
+			this.sendMessageToSupport(allMessages);
 
 			this.support_bubble_outgoing = "";
 
 		},
 
-		sendMessageToSupport: function (message) {
+		sendMessageToSupport: function (allMessages) {
 
-			this.support_bubble_messages.push(message.subscriberMessage)
+			this.support_bubble_messages.push(allMessages.emails.messages)
 
 		},
 
 		sendMessageToUser: function () {
-			var message = {
-				supportMessage: this.support_page_response
+
+			var allMessages = {
+				emails: {
+					email: this.user.email,
+					messages: this.support_page_response
+				}, 
+				user: "support"
 			}
 
-			this.socket.send(JSON.stringify(message));
+			this.socket.send(JSON.stringify(allMessages));
 
-			this.support_page_messages.push(message.supportMessage);
+
+
+			this.support_page_messages.push(allMessages.emails.messages);
 
 			this.support_page_response = ""
 

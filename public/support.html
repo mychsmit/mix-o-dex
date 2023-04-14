@@ -112,7 +112,7 @@
         </div>
         <div class="support-messages">
           <div class="support-details">
-          <div v-if="support_page_messages.length > 0" v-for="message in support_page_messages" class='incoming' :class="{ subscriber: support_incoming == 1, support: support_outgoing == 1">
+          <div v-if="support_page_messages.length > 0" v-for="message in support_page_messages" class='incoming' :class="{ subscriber: support_incoming == 1, support: support_outgoing == 2}">
             <p class="support-email">{{email}}</p>
             <p class="support-message">{{message}}</p>
 
