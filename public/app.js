@@ -623,9 +623,7 @@ Vue.createApp({
 
 		connectSocket: function () {
 
-			
-			const protocol = window.location.protocol.includes('https') ? 'wss': 'ws'
-			const ws = new WebSocket(`${protocol}://${location.host}`);
+			this.socket = new WebSocket("ws://mix-o-dex-production.up.railway.app/");
 
 			this.socket.onmessage = (event) => {
 
