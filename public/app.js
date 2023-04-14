@@ -561,6 +561,7 @@ Vue.createApp({
 					this.incorrect = false;
 					this.getMySelectedBarItems();
 
+      				window.location.reload();
 					console.log("User successfully Logged in");
 				} else {
 					console.log("User Failed To Log In");
