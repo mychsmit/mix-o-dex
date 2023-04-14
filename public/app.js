@@ -570,7 +570,6 @@ Vue.createApp({
 			});
 
 
-      		window.location.reload();
 
 		},
 
