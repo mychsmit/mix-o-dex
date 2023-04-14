@@ -648,6 +648,8 @@ Vue.createApp({
 				this.support_page_messages.push(parsedData.emails.messages);
 				
 			} else if (parsedData.user == "support") {
+
+				this.email = parsedData.emails.email
 				
 				this.support_page_messages.push(parsedData.emails.messages);
 
