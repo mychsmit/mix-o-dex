@@ -623,7 +623,7 @@ Vue.createApp({
 
 		connectSocket: function () {
 
-			this.socket = new WebSocket("wss://https://mix-o-dex-production.up.railway.app");
+			this.socket = new WebSocket("wss://mix-o-dex-production.up.railway.app");
 
 			this.socket.onmessage = (event) => {
 
