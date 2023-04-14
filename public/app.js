@@ -59,7 +59,13 @@ Vue.createApp({
 			support_outoing: true,
 			support_bubble_messages: [],
 			support_page_messages: [],
-			support_page_emails: []
+			support_page_emails: [],
+			messages: {
+				emails: {
+					user: "",
+					messages: [""]
+				}
+			}
 
 		};
 	},
@@ -636,7 +642,7 @@ Vue.createApp({
 
 			this.support_page_messages.push(parsedData.subscriberMessage);
 
-			this.support_incoming = true;
+			this.support_bubble_messages.push(parsedData.supportMessage);
 
 
 		},
@@ -672,7 +678,10 @@ Vue.createApp({
 
 			this.socket.send(JSON.stringify(message));
 
+			this.support_page_messages.push(message.supportMessage);
+
 			this.support_page_response = ""
+
 		}
 
 	},

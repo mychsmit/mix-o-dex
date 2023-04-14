@@ -112,13 +112,9 @@
         </div>
         <div class="support-messages">
           <div class="support-details">
-          <div v-if="support_page_messages.length > 0" v-for="message in support_page_messages" class='incoming'>
+          <div v-if="support_page_messages.length > 0" v-for="message in support_page_messages" class='incoming' :class="{ subscriber: support_incoming == 1, support: support_outgoing == 1">
             <p class="support-email">{{email}}</p>
             <p class="support-message">{{message}}</p>
-          </div>
-          <div v-if="support_outgoing" class="outgoing">
-            <p class="support-message"></p>
-            </div>
 
           <div class="bottom"></div>
           </div>
@@ -132,7 +128,7 @@
         <div class="support-submit-input">
           <div class="support-input-system">
               <input class="support-input" type="text" placeholder="Type Message Here" v-model="support_page_response">
-              <button @click="sendMessageToSocket"class="support-submit-button">Send</button>
+              <button @click="sendMessageToUser"class="support-submit-button">Send</button>
           </div>
         </div>
 
