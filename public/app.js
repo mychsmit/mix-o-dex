@@ -623,7 +623,9 @@ Vue.createApp({
 
 		connectSocket: function () {
 
-			this.socket = new WebSocket("ws://localhost:8080");
+			
+			const protocol = window.location.protocol.includes('https') ? 'wss': 'ws'
+			const ws = new WebSocket(`${protocol}://${location.host}`);
 
 			this.socket.onmessage = (event) => {
 
