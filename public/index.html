@@ -199,7 +199,7 @@
             <ul style="list-style:none;">
               <!-- <span class="save_success">Save Was Successfull</span> -->
               <img src="/cocktail.svg" alt="cocktail_icon"class="cocktail_icon">
-              <input class="title" style="border:1px solid black;" type="text" placeholder="currentDrink.name" v-model="currentDrink.name">
+              <li class="title" >{{currentDrink.name}}</li>
               <br>
               <li class="ingredients" v-for="ingredient in currentDrink.ingredients" style="line-height: 2;">{{ingredient}}</li>
               <br>
