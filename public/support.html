@@ -127,7 +127,7 @@
 
         <div class="support-submit-input">
           <div class="support-input-system">
-              <input class="support-input" type="text" placeholder="Type Message Here" v-model="support_page_response">
+              <input class="support-input" type="text" placeholder="Type Message Here" v-model="support_page_response" @keyup.enter="sendMessageToUser">
               <button @click="sendMessageToUser"class="support-submit-button">Send</button>
           </div>
         </div>

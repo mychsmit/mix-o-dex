@@ -235,8 +235,11 @@
         <i class="fa-solid fa-square-caret-up support_close" v-if="!support" @click="openSupport()"></i></div>
         <div class="support-box" v-if="support">
           <div class="chat-messages">
-            <div v-if="support_bubble_messages.length > 0" v-for="message in support_bubble_messages" class="chat-bubble" :class="{support_incoming: message.direction == 1, support_outgoing: message.direction == 2 }">
-              <p>{{message.text}}</p>
+            <div class="chat-bubble support_incoming">
+              <p>Hello, how can I help you today?</p>
+            </div>
+            <div v-if="support_bubble_messages.length > 0" v-for="message in support_bubble_messages" class="chat-bubble support_outgoing">
+              <p>{{message}}</p>
             </div>
           </div>
         </div>

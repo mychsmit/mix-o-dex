@@ -57,12 +57,7 @@ Vue.createApp({
 			incoming_message: false,
 			support_incoming: false,
 			support_outoing: true,
-			support_bubble_messages: [
-				{
-					direction: 1,
-					text: "Hello, how can I help you today? "
-				}
-			],
+			support_bubble_messages: [],
 			support_page_messages: [],
 			support_page_emails: [],
 			messages: {
@@ -668,26 +663,25 @@ Vue.createApp({
 
 		sendMessageToSocket: function () {
 
-			var support_bubble_messages = [
-			{
-					direction: 2,
-					text: this.support_bubble_outgoing
+			var allMessages = {
+				emails: {
+					email: this.user.email,
+					messages: this.support_bubble_outgoing
+				}, 
+				user: "subscriber"
+			}
 
-				}]
+			this.socket.send(JSON.stringify(allMessages));
 
-				console.log(this.support_bubble_outgoing, "outgoing")
-
-			this.socket.send(JSON.stringify(this.support_bubble_messages));
-
-			this.sendMessageToSupport(this.support_bubble_messages);
+			this.sendMessageToSupport(allMessages);
 
 			this.support_bubble_outgoing = "";
 
 		},
 
-		sendMessageToSupport: function (support_bubble_messages) {
+		sendMessageToSupport: function (allMessages) {
 
-			this.support_bubble_messages.push(support_bubble_messages.text)
+			this.support_bubble_messages.push(allMessages.emails.messages)
 
 		},
 
